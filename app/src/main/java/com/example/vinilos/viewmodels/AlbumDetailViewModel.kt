@@ -11,7 +11,7 @@ import com.example.vinilos.network.NetworkServiceAdapter
 
 class AlbumDetailViewModel(
     application: Application,
-    albumId: Int
+    albumId: String
 ) : AndroidViewModel(application) {
 
     private val _album = MutableLiveData<Album>()
@@ -29,7 +29,7 @@ class AlbumDetailViewModel(
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
-    private val albumId: Int = albumId
+    private val albumId: String = albumId
 
     private fun refreshDataFromNetwork() {
         NetworkServiceAdapter.getInstance(getApplication()).getAlbum(albumId,{
@@ -44,10 +44,12 @@ class AlbumDetailViewModel(
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
-
+    init {
+        refreshDataFromNetwork()
+    }
     class Factory(
         private val app: Application,
-        private val albumId: Int
+        private val albumId: String
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(AlbumDetailViewModel::class.java)) {

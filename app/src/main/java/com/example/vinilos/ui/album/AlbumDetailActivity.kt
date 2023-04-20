@@ -2,28 +2,45 @@ package com.example.vinilos.ui.album
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.vinilos.R
+import com.example.vinilos.databinding.ActivityAlbumDetailBinding
+import com.example.vinilos.models.Album
 import com.example.vinilos.viewmodels.AlbumDetailViewModel
 
-class AlbumDetailActivity : AppCompatActivity() {
 
+class AlbumDetailActivity : AppCompatActivity() {
+    private lateinit var viewModel: AlbumDetailViewModel
+    private lateinit var album: Album
     // Declarar una instancia del ViewModel
-    private lateinit var albumDetailViewModel: AlbumDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_detail)
 
-        // Obtener la instancia del ViewModel
-        albumDetailViewModel = ViewModelProvider(this).get(AlbumDetailViewModel::class.java)
+        val albumId = intent?.extras?.getString("albumId").toString()
 
-        // Observar cambios en los datos del ViewModel
-        albumDetailViewModel.album.observe(this, Observer { album ->
-            // Actualizar la vista con los datos del álbum
-            // ...
+        viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory(this.application, albumId)).get(
+            AlbumDetailViewModel::class.java)
+
+        viewModel.album.observe(this, Observer<Album> {
+            it.apply {
+                album = this
+            }
         })
+        viewModel.eventNetworkError.observe(this, Observer<Boolean> { isNetworkError ->
+            if (isNetworkError) onNetworkError()
+        })
+    }
+
+    private fun onNetworkError() {
+        if(!viewModel.isNetworkErrorShown.value!!) {
+            Toast.makeText(this, "Network Error", Toast.LENGTH_LONG).show()
+            viewModel.onNetworkErrorShown()
+        }
     }
 
 }

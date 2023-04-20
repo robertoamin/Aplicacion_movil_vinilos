@@ -54,7 +54,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
           holder.viewDataBinding.card.setOnClickListener {
               val context = holder.viewDataBinding.root.context
               val intent = Intent(context, AlbumDetailActivity::class.java)
-              intent.putExtra("albumId", album.albumId)
+              intent.putExtra("albumId", album.albumId.toString())
               context.startActivity(intent)
           }
 
