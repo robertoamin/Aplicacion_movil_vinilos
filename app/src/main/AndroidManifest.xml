@@ -14,7 +14,8 @@
         android:theme="@style/Theme.Vinilos"
         tools:targetApi="31">
         <activity
-            android:name=".AlbumDetailActivity"
+            android:name=".ui.album.AlbumDetailActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
