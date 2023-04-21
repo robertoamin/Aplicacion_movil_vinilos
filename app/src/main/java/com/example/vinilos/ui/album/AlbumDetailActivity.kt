@@ -14,26 +14,23 @@ import com.example.vinilos.viewmodels.AlbumDetailViewModel
 
 class AlbumDetailActivity : AppCompatActivity() {
     private lateinit var viewModel: AlbumDetailViewModel
-    private lateinit var album: Album
-    // Declarar una instancia del ViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_album_detail)
-
         val albumId = intent?.extras?.getString("albumId").toString()
+        val binding = DataBindingUtil.setContentView<ActivityAlbumDetailBinding>(this, R.layout.activity_album_detail)
 
         viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory(this.application, albumId)).get(
             AlbumDetailViewModel::class.java)
 
         viewModel.album.observe(this, Observer<Album> {
             it.apply {
-                album = this
+                binding.album = this
             }
         })
         viewModel.eventNetworkError.observe(this, Observer<Boolean> { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
+
     }
 
     private fun onNetworkError() {
@@ -42,5 +39,6 @@ class AlbumDetailActivity : AppCompatActivity() {
             viewModel.onNetworkErrorShown()
         }
     }
+
 
 }
