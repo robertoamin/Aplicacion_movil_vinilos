@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#E4D3CD")))
+        supportActionBar!!.elevation = 0F
 
         val navView: BottomNavigationView = binding.navView
 

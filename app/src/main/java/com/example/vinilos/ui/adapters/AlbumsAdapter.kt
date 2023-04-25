@@ -22,6 +22,8 @@ import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentAlbumItemListBinding
 import com.example.vinilos.databinding.FragmentAlbumItemBinding
 import com.example.vinilos.ui.album.AlbumDetailActivity
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
 
@@ -44,8 +46,15 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         val album = albums[position]
 
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+        val releaseDate = dateFormat.parse(album.releaseDate)
+
+        val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault())
+        val year = yearFormat.format(releaseDate!!)
+
         holder.viewDataBinding.also {
             it.album = album
+            it.dateFormatted = year
         }
 
         Glide.with(holder.itemView)

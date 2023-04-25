@@ -1,20 +1,37 @@
 package com.example.vinilos.ui.album
 
+import android.graphics.Rect
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentAlbumItemListBinding
 import com.example.vinilos.models.Album
 import com.example.vinilos.ui.adapters.AlbumsAdapter
 import com.example.vinilos.viewmodels.AlbumViewModel
+
+class MarginItemDecoration(private val spaceSize: Int) : RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect, view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        with(outRect) {
+            if (parent.getChildAdapterPosition(view) == 0) {
+                top = spaceSize
+            }
+            bottom = spaceSize
+        }
+    }
+}
 
 class AlbumFragment : Fragment() {
     private var _binding: FragmentAlbumItemListBinding? = null
@@ -36,6 +53,7 @@ class AlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = binding.list
         recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.addItemDecoration(MarginItemDecoration(40))
         recyclerView.adapter = viewModelAdapter
     }
 

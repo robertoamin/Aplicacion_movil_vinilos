@@ -4,11 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_marginBottom="80dp"
+    android:backgroundTint="?attr/colorTertiaryContainer"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
+        android:background="@drawable/bg"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -16,8 +20,8 @@
         android:name="com.example.vinilos.ui.album.AlbumFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         app:layoutManager="LinearLayoutManager"
         tools:context=".ui.album.AlbumFragment"
         tools:listitem="@layout/fragment_album_item" />
