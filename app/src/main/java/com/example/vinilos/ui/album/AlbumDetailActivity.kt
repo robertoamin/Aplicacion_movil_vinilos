@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.vinilos.R
 import com.example.vinilos.databinding.ActivityAlbumDetailBinding
 import com.example.vinilos.models.Album
@@ -25,6 +26,9 @@ class AlbumDetailActivity : AppCompatActivity() {
         viewModel.album.observe(this, Observer<Album> {
             it.apply {
                 binding.album = this
+                Glide.with(binding.root)
+                    .load(this.cover)
+                    .into(binding.imageCover)
             }
         })
         viewModel.eventNetworkError.observe(this, Observer<Boolean> { isNetworkError ->

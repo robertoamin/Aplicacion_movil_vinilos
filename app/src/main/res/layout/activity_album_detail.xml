@@ -45,7 +45,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:padding="16dp">
                     <com.google.android.material.chip.Chip
                         android:layout_marginStart="10dp"
@@ -67,6 +67,13 @@
                         app:ensureMinTouchTargetSize="true"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentStart="true"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
                     <!-- Title, secondary and supporting text -->
                     <TextView
                         android:layout_width="wrap_content"
@@ -105,12 +112,12 @@
                        android:layout_gravity="end"
                        android:layout_weight="1"
                        android:text="@{album.artistName}"
-                       android:textAppearance="@style/TextAppearance.Material3.Body2"
+                       android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                        android:textColor="?android:attr/textColorSecondary" />
 
                </LinearLayout>
-                -->
 
+                -->
            </LinearLayout>
 
    </androidx.constraintlayout.widget.ConstraintLayout>
