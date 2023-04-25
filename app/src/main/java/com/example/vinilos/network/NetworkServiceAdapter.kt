@@ -1,6 +1,5 @@
 package com.example.vinilos.network
 import android.content.Context
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -9,9 +8,9 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinilos.models.Album
+import com.example.vinilos.models.Band
 import org.json.JSONArray
 import org.json.JSONObject
-import java.awt.font.NumericShaper
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object{
@@ -43,6 +42,23 @@ class NetworkServiceAdapter constructor(context: Context) {
                 onError(it)
             }))
     }
+
+    fun getAllBands(onComplete:(resp:List<Band>)->Unit, onError: (error:VolleyError)->Unit){
+        requestQueue.add(getRequest("bands",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Band>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(i, Band(bandId = item.getInt("id"),name = item.getString("name"), description = item.getString("description"),image=item.getString("image")))
+                }
+                onComplete(list)
+            },
+            {
+                onError(it)
+            }))
+    }
+
     fun getAlbum(albumId: String, onComplete: (resp: Album) -> Unit, onError: (error: VolleyError) -> Unit) {
         requestQueue.add(
             getRequest(
@@ -66,6 +82,7 @@ class NetworkServiceAdapter constructor(context: Context) {
             )
         )
     }
+
 
     /*fun getCollectors(  onComplete:(resp:List<Collector>)->Unit , onError: (error:VolleyError)->Unit) {
         requestQueue.add(getRequest("collectors",

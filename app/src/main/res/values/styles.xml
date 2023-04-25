@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <style name="radius">
+         <item name="cornerFamily">rounded</item>
+         <item name="cornerSize">50%</item>
+    </style>
     <style name="GreenText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">#D1EDBF</item>
+
     </style>
 </resources>
