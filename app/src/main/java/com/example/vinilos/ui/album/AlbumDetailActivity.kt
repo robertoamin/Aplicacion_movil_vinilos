@@ -11,10 +11,15 @@ import com.example.vinilos.R
 import com.example.vinilos.databinding.ActivityAlbumDetailBinding
 import com.example.vinilos.models.Album
 import com.example.vinilos.viewmodels.AlbumDetailViewModel
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
 
 
 class AlbumDetailActivity : AppCompatActivity() {
     private lateinit var viewModel: AlbumDetailViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val albumId = intent?.extras?.getString("albumId").toString()
@@ -23,14 +28,20 @@ class AlbumDetailActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory(this.application, albumId)).get(
             AlbumDetailViewModel::class.java)
 
-        viewModel.album.observe(this, Observer<Album> {
-            it.apply {
-                binding.album = this
-                Glide.with(binding.root)
-                    .load(this.cover)
-                    .into(binding.imageCover)
-            }
+
+
+        viewModel.album.observe(this, Observer<Album> { album ->
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+            val releaseDate: Date = dateFormat.parse(album.releaseDate)
+            val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault())
+            val year = yearFormat.format(releaseDate!!)
+            binding.yearFormatted = year
+            binding.album = album
+            Glide.with(binding.root)
+                .load(album.cover)
+                .into(binding.imageCover)
         })
+
         viewModel.eventNetworkError.observe(this, Observer<Boolean> { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
