@@ -63,7 +63,7 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(
             getRequest(
                 "albums/$albumId",
-                Response.Listener<String> { response ->
+                { response ->
                     val albumJson = JSONObject(response)
                     val album = Album(
                         albumJson.getInt("id"),
@@ -76,7 +76,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                     )
                     onComplete(album)
                 },
-                Response.ErrorListener { error ->
+                { error ->
                     onError(error)
                 }
             )

@@ -5,7 +5,7 @@
         <item name="colorPrimary">#24282C</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <!-- Secondary brand color. -->
-        <item name="colorSurface">#D1EDBF</item>
+        <item name="colorSurface">#F9F3F0</item>
         <item name="colorSecondaryContainer">#B6F398</item>
         <item name="colorSecondary">#D1EDBF</item>
         <item name="colorOnSecondary">#24282C</item>
@@ -14,6 +14,7 @@
         <item name="colorTertiary">#FFE7AB</item>
         <item name="colorOnTertiary">#24282C</item>
         <item name="colorTertiaryContainer">#E4D3CD</item>
+        <item name="colorOutline">#CAC4D0</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">#E4D3CD</item>
         <!-- Customize your theme here. -->
