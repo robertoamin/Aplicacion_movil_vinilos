@@ -37,7 +37,7 @@
                     android:layout_height="101dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/image_cover"
+                        android:id="@+id/image_artist"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:contentDescription="@{band.name}"
