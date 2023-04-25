@@ -21,7 +21,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
             >
 
             <LinearLayout
@@ -42,6 +41,7 @@
                          />
                     <com.google.android.material.chip.Chip
                         app:chipBackgroundColor="?attr/colorSecondaryContainer"
+                        app:chipStrokeColor="?attr/colorSecondaryContainer"
                         android:layout_marginStart="10dp"
                         android:id="@+id/chip_1"
                         style="@style/Widget.Material3.Chip.Assist"
