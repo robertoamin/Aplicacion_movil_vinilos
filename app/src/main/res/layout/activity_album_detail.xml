@@ -60,8 +60,6 @@
                         android:layout_height="wrap_content"
                         android:text="@{album.genre}"
                         app:ensureMinTouchTargetSize="true"
-                        app:chipBackgroundColor="?attr/colorSecondaryContainer"
-                        app:chipStrokeColor="?attr/colorSecondaryContainer"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentStart="true"/>
                     <com.google.android.material.chip.Chip
@@ -71,8 +69,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{album.recordLabel}"
-                        app:chipBackgroundColor="?attr/colorSecondaryContainer"
-                        app:chipStrokeColor="?attr/colorSecondaryContainer"
                         app:ensureMinTouchTargetSize="true"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentStart="true"/>
