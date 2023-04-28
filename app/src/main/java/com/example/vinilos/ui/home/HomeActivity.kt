@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.vinilos.MainActivity
 import com.example.vinilos.R
+import com.example.vinilos.ui.album.AlbumDetailActivity
 
 //@AndroidEntryPoint
 
@@ -17,12 +18,14 @@ class HomeActivity : AppCompatActivity() {
         val cardUsers: CardView = findViewById(R.id.card_usuarios)
         cardUsers.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragment", "AlbumFragment")
             startActivity(intent)
         }
 
         val cardColectors: CardView = findViewById(R.id.card_coleccionistas)
         cardColectors.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragment", "ColeccionistaFragment")
             startActivity(intent)
         }
     }
