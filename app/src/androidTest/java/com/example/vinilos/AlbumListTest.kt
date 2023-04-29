@@ -1,20 +1,20 @@
 package com.example.vinilos
 
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.vinilos.ui.adapters.AlbumsAdapter
+import com.example.vinilos.ui.home.HomeActivity
 import org.junit.After
-
-import org.junit.Test
-import org.junit.runner.RunWith
-
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class TodoDetailsActivityTest {
@@ -30,7 +30,36 @@ class TodoDetailsActivityTest {
     @Test
     fun clickForAddData() {
         onView(withId(R.id.navigation_album)).perform(click())
+
+        // Wait for the RecyclerView to appear
+        onView(withId(R.id.list))
+            .check(matches(isDisplayed()))
+
+        // Count the number of albums in the RecyclerView
+        val albumCount = getAlbumCount(R.id.list)
+
+        // Perform assertions on the album count
+        // For example, assert that the count is greater than zero
+        assertTrue(albumCount > 0)
+
+
+        /*Thread.sleep(3000)
+        onView(withId(R.id.card)).perform(click())
+        //val items = onData(allOf(withId(R.id.card), withText("card"))).toList()
+        Thread.sleep(3000)*/
     }
+
+    private fun getAlbumCount(recyclerViewId: Int): Int {
+        var albumCount = 0
+        mActivityRule?.scenario?.onActivity { activity ->
+            val recyclerView = activity.findViewById<RecyclerView>(recyclerViewId)
+            recyclerView.adapter?.let { adapter ->
+                albumCount = adapter.itemCount
+            }
+        }
+        return albumCount
+    }
+
 
     @After
     fun tearDown() {
