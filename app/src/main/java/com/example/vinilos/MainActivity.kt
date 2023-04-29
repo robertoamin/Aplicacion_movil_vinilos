@@ -1,15 +1,21 @@
 package com.example.vinilos
 
+import android.content.ClipData.Item
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.vinilos.databinding.ActivityMainBinding
+import com.example.vinilos.ui.home.HomeActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,5 +42,29 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val fragment = intent.getStringExtra("fragment")
+        if (fragment == "AlbumFragment") {
+            navController.navigate(R.id.navigation_album)
+        }
+        else if(fragment == "ColeccionistaFragment"){
+            navController.navigate(R.id.navigation_dashboard)
+        }
+
+        navView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> {
+                    NavigationUI.onNavDestinationSelected(item, navController)
+                }
+            }
+        }
+
+
+
     }
 }
