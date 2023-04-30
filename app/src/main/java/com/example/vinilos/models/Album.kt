@@ -13,3 +13,4 @@ data class Album(
     val genre:String,
     val recordLabel:String
 )
+

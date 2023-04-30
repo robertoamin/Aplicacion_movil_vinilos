@@ -5,11 +5,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
-    <fragment
-        android:id="@+id/navigation_album"
-        android:name="com.example.vinilos.ui.album.AlbumFragment"
-        android:label="@string/title_album"
-        tools:layout="@layout/fragment_album_item_list" />
 
     <fragment
         android:id="@+id/navigation_home"
@@ -18,14 +13,22 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_album"
+        android:name="com.example.vinilos.ui.album.AlbumFragment"
+        android:label="@string/title_album"
+        tools:layout="@layout/fragment_album_item_list" />
+
+    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.vinilos.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_collector"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.vinilos.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.example.vinilos.ui.band.BandFragment"
+        android:label="@string/title_artists"
+        tools:layout="@layout/fragment_album_item_list"
+        android:layout_gravity="center"
+        />
 </navigation>

@@ -4,6 +4,7 @@
 
     <data>
         <variable name="album" type="com.example.vinilos.models.Album"/>
+        <variable name="dateFormatted" type="String"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,12 +17,11 @@
             android:focusable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginBottom="10dp"
             app:cardBackgroundColor="?attr/colorOnPrimary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,12 +40,14 @@
                         android:scaleType="centerCrop"
                          />
                     <com.google.android.material.chip.Chip
+                        app:chipBackgroundColor="?attr/colorSecondaryContainer"
+                        app:chipStrokeColor="?attr/colorSecondaryContainer"
                         android:layout_marginStart="10dp"
                         android:id="@+id/chip_1"
                         style="@style/Widget.Material3.Chip.Assist"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{album.releaseDate}"
+                        android:text="@{dateFormatted}"
                         app:ensureMinTouchTargetSize="true"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentStart="true"/>

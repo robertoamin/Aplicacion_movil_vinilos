@@ -1,6 +1,5 @@
 package com.example.vinilos.network
 import android.content.Context
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -9,9 +8,9 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinilos.models.Album
+import com.example.vinilos.models.Band
 import org.json.JSONArray
 import org.json.JSONObject
-import java.awt.font.NumericShaper
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object{
@@ -43,49 +42,49 @@ class NetworkServiceAdapter constructor(context: Context) {
                 onError(it)
             }))
     }
-    /*fun getCollectors(  onComplete:(resp:List<Collector>)->Unit , onError: (error:VolleyError)->Unit) {
-        requestQueue.add(getRequest("collectors",
-            Response.Listener<String> { response ->
-                Log.d("tagb", response)
+
+    fun getAllBands(onComplete:(resp:List<Band>)->Unit, onError: (error:VolleyError)->Unit){
+        requestQueue.add(getRequest("bands",
+            { response ->
                 val resp = JSONArray(response)
-                val list = mutableListOf<Collector>()
+                val list = mutableListOf<Band>()
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
-                    list.add(i, Collector(collectorId = item.getInt("id"),name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email")))
+                    list.add(i, Band(bandId = item.getInt("id"),name = item.getString("name"), description = item.getString("description"),image=item.getString("image")))
                 }
                 onComplete(list)
             },
-            Response.ErrorListener {
+            {
                 onError(it)
             }))
     }
-    fun getComments( albumId:Int, onComplete:(resp:List<Comment>)->Unit , onError: (error:VolleyError)->Unit) {
-        requestQueue.add(getRequest("albums/$albumId/comments",
-            Response.Listener<String> { response ->
-                val resp = JSONArray(response)
-                val list = mutableListOf<Comment>()
-                var item:JSONObject? = null
-                for (i in 0 until resp.length()) {
-                    item = resp.getJSONObject(i)
-                    Log.d("Response", item.toString())
-                    list.add(i, Comment(albumId = albumId, rating = item.getInt("rating").toString(), description = item.getString("description")))
+
+    fun getAlbum(albumId: String, onComplete: (resp: Album) -> Unit, onError: (error: VolleyError) -> Unit) {
+        requestQueue.add(
+            getRequest(
+                "albums/$albumId",
+                { response ->
+                    val albumJson = JSONObject(response)
+                    val album = Album(
+                        albumJson.getInt("id"),
+                        albumJson.getString("name"),
+                        albumJson.getString("cover"),
+                        albumJson.getString("releaseDate"),
+                        albumJson.getString("description"),
+                        albumJson.getString("genre"),
+                        albumJson.getString("recordLabel")
+                    )
+                    onComplete(album)
+                },
+                { error ->
+                    onError(error)
                 }
-                onComplete(list)
-            },
-            Response.ErrorListener {
-                onError(it)
-            }))
+            )
+        )
     }
-    fun postComment(body: JSONObject, albumId: Int,  onComplete:(resp:JSONObject)->Unit , onError: (error:VolleyError)->Unit){
-        requestQueue.add(postRequest("albums/$albumId/comments",
-            body,
-            Response.Listener<JSONObject> { response ->
-                onComplete(response)
-            },
-            Response.ErrorListener {
-                onError(it)
-            }))
-    }*/
+
+
+
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
     }

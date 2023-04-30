@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="album" type="com.example.vinilos.models.Album"/>
+        <variable name="dateFormatted" type="String"/>
+        <variable name="yearFormatted" type="String" />
+        <variable name="band" type="com.example.vinilos.models.Band"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBar"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/topAppBar"
+                    app:navigationIcon="@drawable/baseline_arrow_back_24"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="Album" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBar">
+
+            <!-- Media -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="194dp">
+
+                <ImageView
+                    android:id="@+id/image_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@{album.name}"
+                    android:scaleType="centerCrop" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_1"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="10dp"
+                    android:text="@{yearFormatted}"
+                    app:chipBackgroundColor="?attr/colorSecondaryContainer"
+                    app:chipStrokeColor="?attr/colorSecondaryContainer"
+                    app:ensureMinTouchTargetSize="true" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_2"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@{album.genre}"
+                    app:ensureMinTouchTargetSize="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_3"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@{album.recordLabel}"
+                    app:ensureMinTouchTargetSize="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{album.name}"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{album.description}"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="?android:attr/textColorSecondary" />
+
+            </LinearLayout>
+            <!--
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:padding="16dp"
+                   app:layout_constraintTop_toBottomOf="@id/text_album_description">
+
+                   <ImageView
+                       android:id="@+id/image_artist"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="start"
+                       android:src="@{album.artistImage}" />
+
+                   <TextView
+                       android:id="@+id/text_artist_name"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="end"
+                       android:layout_weight="1"
+                       android:text="@{album.artistName}"
+                       android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                       android:textColor="?android:attr/textColorSecondary" />
+
+               </LinearLayout>
+
+                -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <!-- Media -->
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="101dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/image_artist"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:contentDescription="@{band.name}"
+                        android:scaleType="centerCrop"
+                        app:shapeAppearanceOverlay="@style/radius" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Title, secondary and supporting text -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{band.name}"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
