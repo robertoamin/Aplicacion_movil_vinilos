@@ -21,28 +21,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val hasAlbumRedirect = intent?.extras?.getString("setAlbum").toBoolean()
+        val hasCollectorsRedirect = intent?.extras?.getString("setCollectors").toBoolean()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
-   /*     supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#E4D3CD")))
-        supportActionBar!!.elevation = 0F*/
 
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-       /* val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_album, R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)*/
         navView.setupWithNavController(navController)
 
         if (hasAlbumRedirect) {
             navController.navigate(R.id.navigation_album)
+        }
+
+        if (hasCollectorsRedirect) {
+            navController.navigate(R.id.navigation_dashboard)
         }
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
@@ -68,32 +63,5 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
-
-        /*
-
-                val fragment = intent.getStringExtra("fragment")
-                if (fragment == "AlbumFragment") {
-                    navController.navigate(R.id.navigation_album)
-                }
-                else if(fragment == "ColeccionistaFragment"){
-                    navController.navigate(R.id.navigation_dashboard)
-                }
-
-                navView.setOnNavigationItemSelectedListener { item ->
-                    when (item.itemId) {
-                        R.id.navigation_home -> {
-                            val intent = Intent(this, HomeActivity::class.java)
-                            startActivity(intent)
-                            true
-                        }
-                        else -> {
-                            NavigationUI.onNavDestinationSelected(item, navController)
-                        }
-                    }
-                }
-
-        */
-
-
     }
 }
