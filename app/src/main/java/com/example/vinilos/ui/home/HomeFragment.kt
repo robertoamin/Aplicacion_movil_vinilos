@@ -1,5 +1,6 @@
 package com.example.vinilos.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.vinilos.MainActivity
 import com.example.vinilos.databinding.FragmentHomeBinding
 import com.example.vinilos.viewmodels.HomeViewModel
 
@@ -33,9 +35,12 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        /*val intent = Intent(this.context, HomeActivity::class.java)
+        startActivity(intent)*/
+
         return root
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

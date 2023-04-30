@@ -6,7 +6,10 @@
     <string name="title_artists">Artistas</string>
     <string name="artists">Artistas</string>
 
-    <string name="title_albums">Albums</string>
+    <string name="title_albums">Álbumes</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_question">¿Quién eres?</string>
+    <string name="home_user_label">Usuario</string>
+    <string name="home_second_user_label">Coleccionista</string>
 </resources>

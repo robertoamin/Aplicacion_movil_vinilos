@@ -18,14 +18,14 @@ class HomeActivity : AppCompatActivity() {
         val cardUsers: CardView = findViewById(R.id.card_usuarios)
         cardUsers.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("fragment", "AlbumFragment")
+            intent.putExtra("setAlbum", "true")
             startActivity(intent)
         }
 
         val cardColectors: CardView = findViewById(R.id.card_coleccionistas)
         cardColectors.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("fragment", "ColeccionistaFragment")
+            intent.putExtra("setCollectors", "true")
             startActivity(intent)
         }
     }
