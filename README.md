@@ -17,31 +17,37 @@ La funcionalidad principal de la aplicación incluye:
 
 ## Requisitos Previos
 
-- Android API level XX o superior.
+- Android 13.0 Google API 33 o superior.
+- Emulador usado: Device Pixel_3a_API33_x86_64
+- Librerias utilizadas: Glide, Volley, recyclerview
+- Java version 1.8
 - Conexión a Internet.
 
 ## Instalación
 
-1. Clona este repositorio: `git clone https://github.com/tuusuario/vinilos.git`
-2. Abre el proyecto en Android Studio.
+1. Clona este repositorio desde la rama Master: `git clone https://github.com/tuusuario/Aplicacion_movil_vinilos`
+2. Abre el proyecto en Android Studio y sincroniza el Gradle
 3. Realiza las configuraciones necesarias para el entorno de desarrollo local, si las hay.
 4. Compila y ejecuta la aplicación en un emulador o dispositivo Android.
 
-## Uso
+## Uso General
 
-1. Al abrir la aplicación, se mostrará una lista de artistas musicales disponibles.
-2. Haz clic en un artista para ver los detalles, como su discografía y biografía.
-3. Explora los álbumes del artista seleccionado y obtén información detallada de cada uno.
-4. Si eres un coleccionista, marca los álbumes que posees en tu colección personal.
-5. Utiliza la función de búsqueda para encontrar artistas o álbumes específicos.
-6. Explora las opciones de filtrado y ordenación para personalizar tu experiencia.
-7. [Agrega aquí instrucciones adicionales de uso o características destacadas]
+1. Al abrir la aplicación, se mostrará un menu principal con 2 cards: Usuario y Coleccionista
+2. Como Usuario, haz clic en Usuario para ver la lista de albums musicales disponibles
+3. Haz clic en un card de la lista de albums para ver los detalles, como el cover, release date, genre, descripcion, etc.
+4. regresa con la flecha del menu superior a la lista de albums musicales disponibles.
+5. Puedes regresar al menu principal dando clic en el boton con figura de casita en la barra de menu inferior
+6. Si eres un coleccionista, haz clic en Coleccionista para ver la lista de estos, sin embargo en esta entrega esa lista aun no esta desarrollada por lo que te saldara una pantalla sin informacion.
+7. Aun cuando en esta pantalla no se despliega aun informacion, si hay una barra de menu inferior, en donde puedes dar clic en artistas y te llevara al listado de artistas disponibles.
+8. En futuras versiones se podra acceder a la informacion detallada del artista seleccionado.
+9. Desde la vista de listado de artista, puedes navegar por la aplicacion a traves del menu de la barra inferior.
+
 
 ## Tecnologías Utilizadas
 
 - Kotlin
 - Jetpack (ViewModel, [otras bibliotecas de Jetpack utilizadas])
-- API: [Nombre del API utilizado]
+- API: https://back-vinilos.herokuapp.com/
 - Lenguaje de programación del API: Python con Flask
 
 ## Licencia
@@ -50,4 +56,4 @@ La funcionalidad principal de la aplicación incluye:
 
 ## Contacto
 
-Si tienes alguna pregunta o sugerencia relacionada con este proyecto, no dudes en ponerte en contacto con nosotros. [Agregar información de contacto]
+Si tienes alguna pregunta o sugerencia relacionada con este proyecto, no dudes en ponerte en contacto con nosotros. [r.amin@uniandes.edu.co]
