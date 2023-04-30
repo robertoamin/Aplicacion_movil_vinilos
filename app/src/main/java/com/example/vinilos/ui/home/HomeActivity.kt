@@ -18,6 +18,7 @@ class HomeActivity : AppCompatActivity() {
         val cardUsers: CardView = findViewById(R.id.card_usuarios)
         cardUsers.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("setAlbum", "true")
             intent.putExtra("fragment", "AlbumFragment")
             startActivity(intent)
         }
@@ -25,6 +26,7 @@ class HomeActivity : AppCompatActivity() {
         val cardColectors: CardView = findViewById(R.id.card_coleccionistas)
         cardColectors.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("setAlbum", "true")
             intent.putExtra("fragment", "ColeccionistaFragment")
             startActivity(intent)
         }
