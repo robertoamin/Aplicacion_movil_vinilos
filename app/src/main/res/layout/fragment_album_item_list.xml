@@ -27,13 +27,13 @@
         tools:listitem="@layout/fragment_album_item" />
 
 
-       <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/_action_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:contentDescription="@string/fab_content_desc"
-            app:srcCompat="@drawable/ic_plus_24"/>-->
+            app:srcCompat="@drawable/ic_plus_24"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
