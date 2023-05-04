@@ -9,6 +9,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinilos.models.Album
 import com.example.vinilos.models.Band
+import com.example.vinilos.models.Coleccionista
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -81,6 +82,22 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
             )
         )
+    }
+
+    fun getCollectors(onComplete:(resp:List<Coleccionista>)->Unit, onError: (error:VolleyError)->Unit){
+        requestQueue.add(getRequest("collectors",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Coleccionista>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(i, Coleccionista(id = item.getInt("id"),name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email")))
+                }
+                onComplete(list)
+            },
+            {
+                onError(it)
+            }))
     }
 
 
