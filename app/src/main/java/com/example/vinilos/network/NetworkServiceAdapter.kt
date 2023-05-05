@@ -35,6 +35,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                 { response ->
                     val resp = JSONArray(response)
                     Log.d("RESPONSE_SIZE", "Size of response: ${resp.length()}")
+                    Log.d("RESPONSE", "Response from server: $resp")
+
                     val list = mutableListOf<Album>()
                     for (i in 0 until resp.length()) {
                         val item = resp.getJSONObject(i)
