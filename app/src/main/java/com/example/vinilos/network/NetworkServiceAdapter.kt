@@ -1,5 +1,6 @@
 package com.example.vinilos.network
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import com.android.volley.*
 import com.android.volley.toolbox.JsonObjectRequest
@@ -33,6 +34,7 @@ class NetworkServiceAdapter constructor(context: Context) {
             getRequest("albums",
                 { response ->
                     val resp = JSONArray(response)
+                    Log.d("RESPONSE_SIZE", "Size of response: ${resp.length()}")
                     val list = mutableListOf<Album>()
                     for (i in 0 until resp.length()) {
                         val item = resp.getJSONObject(i)
@@ -50,18 +52,24 @@ class NetworkServiceAdapter constructor(context: Context) {
                         )
                     }
                     onComplete(list)
+                    // Imprimir el tamaño de la lista en consola
+                    println("#1. Tamaño de la lista de albums: ${list.size}")
                 },
-                {
-                    onError(it)
+                { error ->
+                    Log.e("NETWORK_ERROR", "Error in network request: ${error.message}")
+                    onError(error)
                 })
         )
     }
+
+
 
     fun getAllBands(onComplete: (resp: List<Band>) -> Unit, onError: (error: VolleyError) -> Unit) {
         requestQueue.add(
             getRequest("bands",
                 { response ->
                     val resp = JSONArray(response)
+                    Log.d("RESPONSE_SIZE", "Size of response: ${resp.length()}")
                     val list = mutableListOf<Band>()
                     for (i in 0 until resp.length()) {
                         val item = resp.getJSONObject(i)
@@ -76,9 +84,12 @@ class NetworkServiceAdapter constructor(context: Context) {
                         )
                     }
                     onComplete(list)
+                    // Imprimir el tamaño de la lista en consola
+                    println("#2. Tamaño de la lista de bandas: ${list.size}")
                 },
-                {
-                    onError(it)
+                { error ->
+                    Log.e("NETWORK_ERROR", "Error in network request: ${error.message}")
+                    onError(error)
                 })
         )
     }
