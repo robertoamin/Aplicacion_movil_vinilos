@@ -6,10 +6,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 import androidx.lifecycle.ViewModelProvider
+import com.example.vinilos.R
 
 import com.example.vinilos.databinding.ActivityAlbumCrearBinding
 
 import com.example.vinilos.viewmodels.AlbumCrearViewModel
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.google.android.material.textview.MaterialTextView
 
 
 class AlbumCrearActivity : AppCompatActivity() {
@@ -29,8 +32,11 @@ class AlbumCrearActivity : AppCompatActivity() {
             setupObservers()
         }
 
-
     private fun setupViews() {
+        val items = arrayOf("Sony Music", "EMI", "Discos Fuentes", "Elektra", "Fania Records")
+        (findViewById<MaterialAutoCompleteTextView>(R.id.editTextRecordlabel))?.setSimpleItems(items)
+        val items2 = arrayOf("Classical", "Salsa", "Rock", "Folk")
+        (findViewById<MaterialAutoCompleteTextView>(R.id.editTextGenre))?.setSimpleItems(items2)
         binding.buttonGuardar.setOnClickListener {
             val name = binding.editTextNombre.text.toString()
             val description = binding.editTextDescripcion.text.toString()

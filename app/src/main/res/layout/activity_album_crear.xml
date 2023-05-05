@@ -108,7 +108,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/genreLayout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -117,18 +117,20 @@
             app:helperTextEnabled="true"
             app:startIconContentDescription="@string/genre_album">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/editTextGenre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@android:color/black" />
+                android:inputType="none"
+
+                />
+
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/recordlabelLayout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -137,12 +139,13 @@
             app:helperTextEnabled="true"
             app:startIconContentDescription="@string/recordlabel_album">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/editTextRecordlabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@android:color/black" />
+                android:inputType="none"
+
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
