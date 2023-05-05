@@ -1,16 +1,20 @@
 package com.example.vinilos.network
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
-import com.android.volley.*
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.vinilos.brokers.VolleyBroker.Companion.getRequest
+import com.example.vinilos.brokers.VolleyBroker
+
 import com.example.vinilos.models.Album
 import com.example.vinilos.models.Band
 import org.json.JSONArray
 import org.json.JSONObject
+
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object {
@@ -149,5 +153,11 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(request)
     }
 
+    fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
+        return StringRequest(Request.Method.GET, VolleyBroker.BASE_URL +path, responseListener,errorListener)
+    }
+    fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
+        return  JsonObjectRequest(Request.Method.POST, VolleyBroker.BASE_URL +path, body, responseListener, errorListener)
+    }
 
 }
