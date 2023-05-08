@@ -1,6 +1,7 @@
 package com.example.vinilos.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.models.Band
 import com.example.vinilos.network.NetworkServiceAdapter
@@ -28,6 +29,7 @@ class BandViewModel(application: Application) :  AndroidViewModel(application) {
     private fun refreshDataFromNetwork() {
         NetworkServiceAdapter.getInstance(getApplication()).getAllBands({
             _bands.postValue(it)
+            Log.d("BandViewModel", "Bands retrieved: ${it.size}")
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{

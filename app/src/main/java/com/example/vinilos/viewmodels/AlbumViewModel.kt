@@ -1,6 +1,7 @@
 package com.example.vinilos.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.models.Album
 import com.example.vinilos.network.NetworkServiceAdapter
@@ -28,6 +29,7 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     private fun refreshDataFromNetwork() {
         NetworkServiceAdapter.getInstance(getApplication()).getAlbums({
             _albums.postValue(it)
+            Log.d("AlbumViewModel", "Albums retrieved: ${it.size}")
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{
