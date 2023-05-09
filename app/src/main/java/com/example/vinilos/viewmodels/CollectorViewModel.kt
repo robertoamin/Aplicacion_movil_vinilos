@@ -2,15 +2,14 @@ package com.example.vinilos.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.vinilos.models.Album
-import com.example.vinilos.models.Coleccionista
+import com.example.vinilos.models.Collector
 import com.example.vinilos.network.NetworkServiceAdapter
 
-class ColeccionistaViewModel(application: Application) :  AndroidViewModel(application) {
-    private val _coleccionistas = MutableLiveData<List<Coleccionista>>()
+class CollectorViewModel(application: Application) :  AndroidViewModel(application) {
+    private val _collectors = MutableLiveData<List<Collector>>()
 
-    val coleccionistas: LiveData<List<Coleccionista>>
-        get() = _coleccionistas
+    val collectors: LiveData<List<Collector>>
+        get() = _collectors
 
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
@@ -28,7 +27,7 @@ class ColeccionistaViewModel(application: Application) :  AndroidViewModel(appli
 
     private fun refreshDataFromNetwork() {
         NetworkServiceAdapter.getInstance(getApplication()).getCollectors({
-            _coleccionistas.postValue(it)
+            _collectors.postValue(it)
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{
@@ -43,9 +42,9 @@ class ColeccionistaViewModel(application: Application) :  AndroidViewModel(appli
     class Factory(val app: Application) : ViewModelProvider.AndroidViewModelFactory(app){
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(ColeccionistaViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(CollectorViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return ColeccionistaViewModel(app) as T
+                return CollectorViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

@@ -13,7 +13,7 @@
         android:title="@string/title_album" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_collector"
         android:icon="@drawable/ic_home_collectors_24dp"
         android:title="@string/title_collector" />
 

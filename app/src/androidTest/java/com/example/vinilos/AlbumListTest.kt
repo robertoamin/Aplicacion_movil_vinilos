@@ -6,6 +6,7 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.vinilos.ui.home.HomeActivity
@@ -15,12 +16,13 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import kotlin.concurrent.thread
 
 @RunWith(AndroidJUnit4::class)
 class TodoDetailsActivityTest {
 
     @get : Rule
-    var mActivityRule = ActivityScenarioRule(MainActivity::class.java)
+    var mActivityRule = ActivityScenarioRule(HomeActivity::class.java)
 
     @Before
     fun setUp() {
@@ -29,19 +31,21 @@ class TodoDetailsActivityTest {
 
     @Test
     fun clickForAddData() {
-        onView(withId(R.id.navigation_album)).perform(click())
-
+        val image = onView(withId(R.id.card_usuarios))
+        image.perform(click())
+        Thread.sleep(6000)
         // Wait for the RecyclerView to appear
         onView(withId(R.id.list))
             .check(matches(isDisplayed()))
 
         // Count the number of albums in the RecyclerView
-        val albumCount = getAlbumCount(R.id.list)
+        //val albumCount = getAlbumCount(R.id.list)
 
         // Perform assertions on the album count
         // For example, assert that the count is greater than zero
-        assertTrue(albumCount > 0)
-
+        //assertTrue(albumCount > 0)
+        val textAlbum = onView(withText("parental advisory"))
+        textAlbum.check(matches(isDisplayed()))
 
         /*Thread.sleep(3000)
         onView(withId(R.id.card)).perform(click())

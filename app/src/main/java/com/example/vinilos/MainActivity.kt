@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (hasCollectorsRedirect) {
-            navController.navigate(R.id.navigation_dashboard)
+            navController.navigate(R.id.navigation_collector)
         }
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
