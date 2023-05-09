@@ -30,6 +30,7 @@ class BandViewModel(application: Application) :  AndroidViewModel(application) {
     private fun refreshDataFromNetwork() {
         bandsRepository.refreshData({
             _bands.postValue(it)
+            Log.d("BandViewModel", "Bands retrieved: ${it.size}")
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{

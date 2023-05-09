@@ -12,4 +12,13 @@
     <string name="home_question">¿Quién eres?</string>
     <string name="home_user_label">Usuario</string>
     <string name="home_second_user_label">Coleccionista</string>
+    <string name="descripcion_album">detalle una descripcion del album</string>
+    <string name="nombre_album">Ingrese el nombre del album</string>
+    <string name="fab_content_desc">Crear un album</string>
+    <string name="cover_album">Ingrese la URL de foto del album</string>
+    <string name="releasedate_album">Ingrese fecha lanzamiento album</string>
+    <string name="genre_album">Ingrese el genero musical</string>
+    <string name="recordlabel_album">Ingrese la casa musical a la que pertenece</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
 </resources>
