@@ -26,7 +26,7 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         refreshDataFromNetwork()
     }
 
-    private fun refreshDataFromNetwork() {
+    fun refreshDataFromNetwork() {
         NetworkServiceAdapter.getInstance(getApplication()).getAlbums({
             _albums.postValue(it)
             Log.d("AlbumViewModel", "Albums retrieved: ${it.size}")

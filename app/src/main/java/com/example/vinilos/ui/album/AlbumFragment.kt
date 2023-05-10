@@ -40,8 +40,7 @@ class AlbumFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AlbumViewModel
     private var viewModelAdapter: AlbumsAdapter? = null
-
-
+    private lateinit var albumViewModel: AlbumViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,6 +69,7 @@ class AlbumFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
         activity.actionBar?.title = getString(R.string.title_albums)
+        albumViewModel = ViewModelProvider(this).get(AlbumViewModel::class.java)
         viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application)).get(AlbumViewModel::class.java)
         viewModel.albums.observe(viewLifecycleOwner, Observer<List<Album>> {
             it.apply {
@@ -81,6 +81,10 @@ class AlbumFragment : Fragment() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        albumViewModel.refreshDataFromNetwork()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
