@@ -40,7 +40,7 @@ class AlbumFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AlbumViewModel
     private var viewModelAdapter: AlbumsAdapter? = null
-    private lateinit var adapter: AlbumsAdapter
+
 
 
     override fun onCreateView(
