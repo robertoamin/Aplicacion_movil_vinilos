@@ -40,6 +40,7 @@ class AlbumFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AlbumViewModel
     private var viewModelAdapter: AlbumsAdapter? = null
+    private lateinit var adapter: AlbumsAdapter
 
 
     override fun onCreateView(
@@ -55,7 +56,6 @@ class AlbumFragment : Fragment() {
         }
         return view
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = binding.list
@@ -80,6 +80,8 @@ class AlbumFragment : Fragment() {
             if (isNetworkError) onNetworkError()
         })
     }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
