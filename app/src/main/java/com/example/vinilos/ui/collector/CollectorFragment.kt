@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentCollectorItemListBinding
-import com.example.vinilos.models.Album
 import com.example.vinilos.models.Collector
-import com.example.vinilos.ui.adapters.AlbumsAdapter
 import com.example.vinilos.ui.adapters.CollectorAdapter
 import com.example.vinilos.viewmodels.CollectorViewModel
 
