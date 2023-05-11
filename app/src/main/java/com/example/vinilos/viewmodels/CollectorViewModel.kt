@@ -1,12 +1,14 @@
 package com.example.vinilos.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.models.Collector
-import com.example.vinilos.network.NetworkServiceAdapter
+import com.example.vinilos.repositories.CollectorRepository
 
 class CollectorViewModel(application: Application) :  AndroidViewModel(application) {
     private val _collectors = MutableLiveData<List<Collector>>()
+    private val collectorRepository = CollectorRepository(application)
 
     val collectors: LiveData<List<Collector>>
         get() = _collectors
@@ -26,11 +28,13 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
     }
 
     private fun refreshDataFromNetwork() {
-        NetworkServiceAdapter.getInstance(getApplication()).getCollectors({
+        collectorRepository.refreshData({
             _collectors.postValue(it)
+            Log.d("CollectorViewModel", "Collectors retrieved: ${it.size}")
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{
+            Log.d("Error", it.toString())
             _eventNetworkError.value = true
         })
     }
