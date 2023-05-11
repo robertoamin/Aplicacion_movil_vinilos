@@ -3,9 +3,7 @@ package com.example.vinilos.repositories
 import android.app.Application
 import com.example.vinilos.models.Album
 import com.example.vinilos.network.NetworkServiceAdapter
-
 import com.android.volley.VolleyError
-
 
 class AlbumRepository (val application: Application){
     fun refreshData(callback: (List<Album>)->Unit, onError: (VolleyError)->Unit)  {
@@ -16,5 +14,9 @@ class AlbumRepository (val application: Application){
         },
             onError
         )
+    }
+    private val networkServiceAdapter = NetworkServiceAdapter.getInstance(application)
+    fun crearAlbum(album: Album, onSuccess: () -> Unit, onError: (VolleyError) -> Unit) {
+        networkServiceAdapter.crearAlbum(album, onSuccess, onError)
     }
 }
