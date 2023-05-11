@@ -19,4 +19,7 @@ class AlbumRepository (val application: Application){
     fun crearAlbum(album: Album, onSuccess: () -> Unit, onError: (VolleyError) -> Unit) {
         networkServiceAdapter.crearAlbum(album, onSuccess, onError)
     }
+    fun getAlbum(albumId: String, callback: (Album) -> Unit, onError: (VolleyError) -> Unit) {
+        networkServiceAdapter.getAlbum(albumId, callback, onError)
+    }
 }
