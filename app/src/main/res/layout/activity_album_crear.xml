@@ -181,8 +181,7 @@
                     android:text="@string/guardar"
                     android:textColor="@color/black"
                     app:backgroundTint="?attr/colorSecondaryContainer"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:onClick="guardarOnClick"/>
+                    style="?attr/materialButtonOutlinedStyle"/>
 
             </LinearLayout>
 
