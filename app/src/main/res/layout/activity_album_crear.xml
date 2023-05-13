@@ -118,6 +118,7 @@
 
             <AutoCompleteTextView
                 android:id="@+id/editTextGenre"
+                android:hint="Género"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -140,6 +141,7 @@
 
             <AutoCompleteTextView
                 android:id="@+id/editTextRecordlabel"
+                android:hint="Discográfica"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -181,8 +183,7 @@
                     android:text="@string/guardar"
                     android:textColor="@color/black"
                     app:backgroundTint="?attr/colorSecondaryContainer"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:onClick="guardarOnClick"/>
+                    style="?attr/materialButtonOutlinedStyle"/>
 
             </LinearLayout>
 

@@ -2,7 +2,6 @@ package com.example.vinilos.repositories
 
 import android.app.Application
 import com.android.volley.VolleyError
-import com.example.vinilos.models.Album
 import com.example.vinilos.models.Band
 import com.example.vinilos.network.NetworkServiceAdapter
 

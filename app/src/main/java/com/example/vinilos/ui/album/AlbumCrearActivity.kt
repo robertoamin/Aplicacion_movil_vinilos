@@ -1,18 +1,14 @@
 package com.example.vinilos.ui.album
+
 import android.os.Bundle
 import android.view.View
-
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.lifecycle.ViewModelProvider
 import com.example.vinilos.R
-
 import com.example.vinilos.databinding.ActivityAlbumCrearBinding
-
 import com.example.vinilos.viewmodels.AlbumCrearViewModel
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
-import com.google.android.material.textview.MaterialTextView
 
 
 class AlbumCrearActivity : AppCompatActivity() {

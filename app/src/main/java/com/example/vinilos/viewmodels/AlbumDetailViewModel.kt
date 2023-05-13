@@ -1,13 +1,8 @@
 package com.example.vinilos.viewmodels
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.example.vinilos.models.Album
-import com.example.vinilos.network.NetworkServiceAdapter
 import com.example.vinilos.repositories.AlbumRepository
 
 class AlbumDetailViewModel(

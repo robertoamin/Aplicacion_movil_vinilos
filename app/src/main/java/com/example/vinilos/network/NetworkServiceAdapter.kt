@@ -8,7 +8,6 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.vinilos.brokers.VolleyBroker
 
 import com.example.vinilos.models.Album
 import com.example.vinilos.models.Band
@@ -41,10 +40,10 @@ class NetworkServiceAdapter constructor(context: Context) {
                     val resp = JSONArray(response)
                     Log.d("RESPONSE_SIZE", "Size of response: ${resp.length()}")
                     Log.d("RESPONSE", "Response from server: $resp")
-
+                    var item:JSONObject
                     val list = mutableListOf<Album>()
                     for (i in 0 until resp.length()) {
-                        val item = resp.getJSONObject(i)
+                        item = resp.getJSONObject(i)
                         list.add(
                             i,
                             Album(
@@ -77,9 +76,10 @@ class NetworkServiceAdapter constructor(context: Context) {
                 { response ->
                     val resp = JSONArray(response)
                     Log.d("RESPONSE_SIZE", "Size of response: ${resp.length()}")
+                    var item:JSONObject
                     val list = mutableListOf<Band>()
                     for (i in 0 until resp.length()) {
-                        val item = resp.getJSONObject(i)
+                        item = resp.getJSONObject(i)
                         list.add(
                             i,
                             Band(
@@ -160,7 +160,7 @@ class NetworkServiceAdapter constructor(context: Context) {
             { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Collector>()
-                var item: JSONObject;
+                var item: JSONObject
                 for (i in 0 until resp.length()) {
                     item = resp.getJSONObject(i)
                     list.add(i, Collector(id = item.getInt("id"),name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email")))
@@ -187,7 +187,7 @@ class NetworkServiceAdapter constructor(context: Context) {
             Request.Method.POST,
             BASE_URL + "albums",
             albumJson,
-            { _ ->
+            {
                 onComplete()
             },
             { error ->
@@ -199,10 +199,10 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
 
     fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
-        return StringRequest(Request.Method.GET, VolleyBroker.BASE_URL +path, responseListener,errorListener)
+        return StringRequest(Request.Method.GET, BASE_URL +path, responseListener,errorListener)
     }
     fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.POST, VolleyBroker.BASE_URL +path, body, responseListener, errorListener)
+        return  JsonObjectRequest(Request.Method.POST, BASE_URL +path, body, responseListener, errorListener)
     }
 
 }

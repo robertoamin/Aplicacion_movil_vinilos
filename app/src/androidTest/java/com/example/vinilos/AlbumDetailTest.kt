@@ -1,3 +1,4 @@
+package com.example.vinilos
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 
@@ -16,6 +17,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @RunWith(AndroidJUnit4::class)
 class AlbumDetailTest {
     @get : Rule
@@ -24,11 +26,12 @@ class AlbumDetailTest {
     @Before
     fun setUp() {
         //initial setup code
+        onView(withId(R.id.card_usuarios)).perform(click())
     }
     // Positive Test for AlbumDetails
     @Test
     fun clickForAlbumDetail() {
-        onView(withId(R.id.card_usuarios)).perform(click())
+
 
         // Wait for Album list to be displayed
         onView(withId(R.id.list)).check(matches(isDisplayed()))
@@ -41,12 +44,12 @@ class AlbumDetailTest {
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
         )
 
-        // wait to show album details
-        Thread.sleep(3000)
     }
 
     @After
     fun tearDown() {
+        // wait to show album details
+        Thread.sleep(3000)
         //clean up code
     }
 }

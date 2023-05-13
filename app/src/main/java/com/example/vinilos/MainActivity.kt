@@ -1,9 +1,7 @@
 package com.example.vinilos
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.vinilos.databinding.ActivityMainBinding
 import com.example.vinilos.ui.home.HomeActivity
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
