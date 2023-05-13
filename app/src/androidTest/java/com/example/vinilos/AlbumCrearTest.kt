@@ -72,6 +72,104 @@ class AlbumCrearTest {
         return itemCount[0]
     }
 
+    // Negative Test for AlbumCreation without name field filled
+    @Test
+    fun clickForCrearAlbumNegative1() {
+        onView(withId(R.id.card_usuarios)).perform(click())
+        onView(withId(R.id._action_button)).perform(click())
+        // Wait until Album fields appears
+        onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
+        // fill data in album form, with name in blank
+        onView(withId(R.id.editTextNombre)).perform(typeText(""), closeSoftKeyboard())
+        onView(withId(R.id.editTextDescripcion)).perform(typeText("Musica de todos los tiempos..."), closeSoftKeyboard())
+        onView(withId(R.id.editTextCover)).perform(typeText("https://assets.turbologo.com/blog/es/2022/04/07043402/06-958x575.png"), closeSoftKeyboard())
+        onView(withId(R.id.editTextReleasedate)).perform(typeText("2010"), closeSoftKeyboard())
+        onView(withId(R.id.editTextGenre)).perform(replaceText("Rock"), closeSoftKeyboard())
+        onView(withId(R.id.editTextRecordlabel)).perform(replaceText("Sony Music"), closeSoftKeyboard())
+        //Click on Save button
+        onView(withId(R.id.buttonGuardar)).perform(click())
+        // Verify if the error toast message is displayed
+    }
+
+    // Negative Test for AlbumCreation with cancel button instead of save button
+    @Test
+    fun clickForCrearAlbumNegative2() {
+        onView(withId(R.id.card_usuarios)).perform(click())
+        onView(withId(R.id._action_button)).perform(click())
+        // Wait until Album fields appears
+        onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
+        // fill data in album form, with name in blank
+        onView(withId(R.id.editTextNombre)).perform(typeText("libelula"), closeSoftKeyboard())
+        onView(withId(R.id.editTextDescripcion)).perform(typeText("Musica de todos los tiempos..."), closeSoftKeyboard())
+        onView(withId(R.id.editTextCover)).perform(typeText("https://assets.turbologo.com/blog/es/2022/04/07043402/06-958x575.png"), closeSoftKeyboard())
+        onView(withId(R.id.editTextReleasedate)).perform(typeText("2010"), closeSoftKeyboard())
+        onView(withId(R.id.editTextGenre)).perform(replaceText("Rock"), closeSoftKeyboard())
+        onView(withId(R.id.editTextRecordlabel)).perform(replaceText("Sony Music"), closeSoftKeyboard())
+        //Click on Save button
+        onView(withId(R.id.buttonCancelar)).perform(click())
+        // Wait until list is displayed
+        onView(withId(R.id.list)).check(matches(isDisplayed()))
+        Thread.sleep(1000)
+    }
+
+    // Negative Test for AlbumCreation with wrong data in ReleaseDate field
+    @Test
+    fun clickForCrearAlbumNegative3() {
+        onView(withId(R.id.card_usuarios)).perform(click())
+        onView(withId(R.id._action_button)).perform(click())
+        // Wait until Album fields appears
+        onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
+        // fill data in album form, with name in blank
+        onView(withId(R.id.editTextNombre)).perform(typeText("libelula"), closeSoftKeyboard())
+        onView(withId(R.id.editTextDescripcion)).perform(typeText("Musica de todos los tiempos..."), closeSoftKeyboard())
+        onView(withId(R.id.editTextCover)).perform(typeText("https://assets.turbologo.com/blog/es/2022/04/07043402/06-958x575.png"), closeSoftKeyboard())
+        onView(withId(R.id.editTextReleasedate)).perform(typeText("wrong"), closeSoftKeyboard())
+        onView(withId(R.id.editTextGenre)).perform(replaceText("Rock"), closeSoftKeyboard())
+        onView(withId(R.id.editTextRecordlabel)).perform(replaceText("Sony Music"), closeSoftKeyboard())
+        //Click on Save button
+        onView(withId(R.id.buttonGuardar)).perform(click())
+        // Verify if the error toast message is displayed
+        Thread.sleep(1000)
+    }
+
+    @Test
+    fun clickForCrearAlbumNegative4() {
+        onView(withId(R.id.card_usuarios)).perform(click())
+        onView(withId(R.id._action_button)).perform(click())
+        // Wait until Album fields appears
+        onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
+        // fill data in album form, with name in blank
+        onView(withId(R.id.editTextNombre)).perform(typeText("libelula"), closeSoftKeyboard())
+        onView(withId(R.id.editTextDescripcion)).perform(typeText("Musica de todos los tiempos..."), closeSoftKeyboard())
+        onView(withId(R.id.editTextCover)).perform(typeText("https://assets.turbologo.com/blog/es/2022/04/07043402/06-958x575.png"), closeSoftKeyboard())
+        onView(withId(R.id.editTextReleasedate)).perform(typeText(""), closeSoftKeyboard())
+        onView(withId(R.id.editTextGenre)).perform(replaceText("Rock"), closeSoftKeyboard())
+        onView(withId(R.id.editTextRecordlabel)).perform(replaceText("Sony Music"), closeSoftKeyboard())
+        //Click on Save button
+        onView(withId(R.id.buttonGuardar)).perform(click())
+        // Verify if the error toast message is displayed
+        Thread.sleep(1000)
+    }
+
+    // Negative Test for AlbumCreation without Cover field filled
+    @Test
+    fun clickForCrearAlbumNegative5() {
+        onView(withId(R.id.card_usuarios)).perform(click())
+        onView(withId(R.id._action_button)).perform(click())
+        // Wait until Album fields appears
+        onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
+        // fill data in album form, with name in blank
+        onView(withId(R.id.editTextNombre)).perform(typeText("libelula"), closeSoftKeyboard())
+        onView(withId(R.id.editTextDescripcion)).perform(typeText("Musica de todos los tiempos..."), closeSoftKeyboard())
+        onView(withId(R.id.editTextCover)).perform(typeText(""), closeSoftKeyboard())
+        onView(withId(R.id.editTextReleasedate)).perform(typeText("2010"), closeSoftKeyboard())
+        onView(withId(R.id.editTextGenre)).perform(replaceText("Rock"), closeSoftKeyboard())
+        onView(withId(R.id.editTextRecordlabel)).perform(replaceText("Sony Music"), closeSoftKeyboard())
+        //Click on Save button
+        onView(withId(R.id.buttonGuardar)).perform(click())
+        // Verify if the error toast message is displayed
+        Thread.sleep(1000)
+    }
 
     @After
     fun tearDown() {
