@@ -160,8 +160,9 @@ class NetworkServiceAdapter constructor(context: Context) {
             { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Collector>()
+                var item: JSONObject;
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
+                    item = resp.getJSONObject(i)
                     list.add(i, Collector(id = item.getInt("id"),name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email")))
                 }
                 onComplete(list)
