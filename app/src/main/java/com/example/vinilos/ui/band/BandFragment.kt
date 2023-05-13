@@ -40,6 +40,8 @@ class BandFragment : Fragment() {
         _binding = FragmentBandItemListBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = BandsAdapter()
+
+
         return view
     }
 

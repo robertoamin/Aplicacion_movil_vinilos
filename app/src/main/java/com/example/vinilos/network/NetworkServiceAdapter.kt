@@ -129,6 +129,31 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
+    fun getBandDetail(
+        bandId: String,
+        onComplete: (resp: Band) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        requestQueue.add(
+            getRequest(
+                "bands/$bandId",
+                { response ->
+                    val bandJson = JSONObject(response)
+                    val bandDetail = Band(
+                        bandJson.getInt("id"),
+                        bandJson.getString("name"),
+                        bandJson.getString("description"),
+                        bandJson.getString("image")
+                    )
+                    onComplete(bandDetail)
+                },
+                { error ->
+                    onError(error)
+                }
+            )
+        )
+    }
+
 
     fun getCollectors(onComplete:(resp:List<Collector>)->Unit, onError: (error:VolleyError)->Unit){
         requestQueue.add(getRequest("collectors",

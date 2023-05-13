@@ -19,4 +19,13 @@
         <item name="android:statusBarColor">#E4D3CD</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Vinilos.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Vinilos.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Vinilos.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
