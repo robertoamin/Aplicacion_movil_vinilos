@@ -1,6 +1,12 @@
+package com.example.vinilos
+
 import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
-
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.vinilos.ui.home.HomeActivity
@@ -9,12 +15,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.contrib.RecyclerViewActions
 
 
 @RunWith(AndroidJUnit4::class)
@@ -26,15 +26,13 @@ class AlbumCrearTest {
     @Before
     fun setUp() {
         //initial setup code
+        onView(withId(R.id.card_usuarios)).perform(click())
+        onView(withId(R.id._action_button)).perform(click())
     }
 
     // Positive Test for AlbumCreation
     @Test
     fun clickForCrearAlbum() {
-        onView(withId(R.id.card_usuarios)).perform(click())
-
-        onView(withId(R.id._action_button)).perform(click())
-
         // Wait until Album fields appears
         onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
 
@@ -75,8 +73,7 @@ class AlbumCrearTest {
     // Negative Test for AlbumCreation without name field filled
     @Test
     fun clickForCrearAlbumNegative1() {
-        onView(withId(R.id.card_usuarios)).perform(click())
-        onView(withId(R.id._action_button)).perform(click())
+
         // Wait until Album fields appears
         onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
         // fill data in album form, with name in blank
@@ -94,8 +91,6 @@ class AlbumCrearTest {
     // Negative Test for AlbumCreation with cancel button instead of save button
     @Test
     fun clickForCrearAlbumNegative2() {
-        onView(withId(R.id.card_usuarios)).perform(click())
-        onView(withId(R.id._action_button)).perform(click())
         // Wait until Album fields appears
         onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
         // fill data in album form, with name in blank
@@ -109,14 +104,12 @@ class AlbumCrearTest {
         onView(withId(R.id.buttonCancelar)).perform(click())
         // Wait until list is displayed
         onView(withId(R.id.list)).check(matches(isDisplayed()))
-        Thread.sleep(1000)
+
     }
 
     // Negative Test for AlbumCreation with wrong data in ReleaseDate field
     @Test
     fun clickForCrearAlbumNegative3() {
-        onView(withId(R.id.card_usuarios)).perform(click())
-        onView(withId(R.id._action_button)).perform(click())
         // Wait until Album fields appears
         onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
         // fill data in album form, with name in blank
@@ -129,13 +122,10 @@ class AlbumCrearTest {
         //Click on Save button
         onView(withId(R.id.buttonGuardar)).perform(click())
         // Verify if the error toast message is displayed
-        Thread.sleep(1000)
     }
 
     @Test
     fun clickForCrearAlbumNegative4() {
-        onView(withId(R.id.card_usuarios)).perform(click())
-        onView(withId(R.id._action_button)).perform(click())
         // Wait until Album fields appears
         onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
         // fill data in album form, with name in blank
@@ -148,14 +138,11 @@ class AlbumCrearTest {
         //Click on Save button
         onView(withId(R.id.buttonGuardar)).perform(click())
         // Verify if the error toast message is displayed
-        Thread.sleep(1000)
     }
 
     // Negative Test for AlbumCreation without Cover field filled
     @Test
     fun clickForCrearAlbumNegative5() {
-        onView(withId(R.id.card_usuarios)).perform(click())
-        onView(withId(R.id._action_button)).perform(click())
         // Wait until Album fields appears
         onView(withId(R.id.editTextNombre)).check(matches(isDisplayed()))
         // fill data in album form, with name in blank
@@ -168,11 +155,11 @@ class AlbumCrearTest {
         //Click on Save button
         onView(withId(R.id.buttonGuardar)).perform(click())
         // Verify if the error toast message is displayed
-        Thread.sleep(1000)
     }
 
     @After
     fun tearDown() {
+        Thread.sleep(1000)
         //clean up code
     }
 

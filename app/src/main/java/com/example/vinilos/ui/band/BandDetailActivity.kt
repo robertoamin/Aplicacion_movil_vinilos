@@ -1,21 +1,18 @@
 package com.example.vinilos.ui.band
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.vinilos.MainActivity
 import com.example.vinilos.R
-
 import com.example.vinilos.databinding.ActivityBandDetailBinding
-import com.example.vinilos.viewmodels.BandDetailViewModel
 import com.example.vinilos.models.Band
+import com.example.vinilos.viewmodels.BandDetailViewModel
 import com.google.android.material.appbar.MaterialToolbar
-import java.text.SimpleDateFormat
 
 
 class BandDetailActivity : AppCompatActivity() {

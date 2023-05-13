@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.models.Band
-import com.example.vinilos.network.NetworkServiceAdapter
 import com.example.vinilos.repositories.BandRepository
 
 class BandViewModel(application: Application) :  AndroidViewModel(application) {

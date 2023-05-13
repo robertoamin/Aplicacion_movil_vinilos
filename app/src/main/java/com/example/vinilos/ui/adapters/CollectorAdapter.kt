@@ -5,10 +5,8 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentCollectorItemBinding
-
 import com.example.vinilos.models.Collector
 
 class CollectorAdapter : RecyclerView.Adapter<CollectorAdapter.BandViewHolder>() {
