@@ -15,19 +15,19 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:name="com.example.vinilos.ui.album.AlbumFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        app:layoutManager="LinearLayoutManager"
-        tools:context=".ui.album.AlbumFragment"
-        tools:listitem="@layout/fragment_album_item" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:name="com.example.vinilos.ui.album.AlbumFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:context=".ui.album.AlbumFragment"
+            tools:listitem="@layout/fragment_album_item" />
 
-     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/_action_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

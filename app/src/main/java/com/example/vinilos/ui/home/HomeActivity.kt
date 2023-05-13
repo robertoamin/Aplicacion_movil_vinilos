@@ -28,6 +28,8 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("setCollectors", "true")
             startActivity(intent)
         }
+
+
     }
 
 

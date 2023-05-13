@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val hasAlbumRedirect = intent?.extras?.getString("setAlbum").toBoolean()
         val hasCollectorsRedirect = intent?.extras?.getString("setCollectors").toBoolean()
+        var hasBandRedirect = intent?.extras?.getString("listBands").toBoolean()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -38,6 +39,10 @@ class MainActivity : AppCompatActivity() {
 
         if (hasCollectorsRedirect) {
             navController.navigate(R.id.navigation_collector)
+        }
+
+        if (hasBandRedirect) {
+            navController.navigate(R.id.navigation_notifications)
         }
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
