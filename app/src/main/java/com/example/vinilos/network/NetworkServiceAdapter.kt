@@ -14,6 +14,9 @@ import com.example.vinilos.models.Band
 import com.example.vinilos.models.Collector
 import org.json.JSONArray
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 
 class NetworkServiceAdapter constructor(context: Context) {
@@ -155,20 +158,25 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
 
 
-    fun getCollectors(onComplete:(resp:List<Collector>)->Unit, onError: (error:VolleyError)->Unit){
+    suspend fun getCollectors() = suspendCoroutine<List<Collector>>{ cont ->
         requestQueue.add(getRequest("collectors",
-            { response ->
+            Response.Listener<String>{ response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Collector>()
                 var item: JSONObject
                 for (i in 0 until resp.length()) {
                     item = resp.getJSONObject(i)
-                    list.add(i, Collector(id = item.getInt("id"),name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email")))
+                    list.add(i,
+                        Collector(
+                            id = item.getInt("id"),
+                            name = item.getString("name"),
+                            telephone = item.getString("telephone"),
+                            email = item.getString("email")))
                 }
-                onComplete(list)
+                cont.resume(list)
             },
-            {
-                onError(it)
+            Response.ErrorListener{
+                cont.resumeWithException(it)
             }))
     }
 

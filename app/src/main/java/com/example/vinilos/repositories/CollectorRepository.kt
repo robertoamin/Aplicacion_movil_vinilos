@@ -7,11 +7,8 @@ import com.example.vinilos.network.NetworkServiceAdapter
 
 class CollectorRepository (val application: Application) {
 
-    fun refreshData(callback: (List<Collector>)->Unit, onError: (VolleyError)->Unit){
-        NetworkServiceAdapter.getInstance(application).getCollectors({
-            callback(it)
-        },{
-            onError
-        })
+    suspend fun refreshData(): List<Collector>{
+        //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
+        return NetworkServiceAdapter.getInstance(application).getCollectors()
     }
 }
