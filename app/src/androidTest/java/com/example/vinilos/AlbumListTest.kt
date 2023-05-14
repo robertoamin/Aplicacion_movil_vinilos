@@ -1,5 +1,6 @@
 package com.example.vinilos
 
+import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -27,40 +28,53 @@ class TodoDetailsActivityTest {
     }
 
     @Test
-    fun clickForAddData() {
+    fun navFromHomeToAlbum() {
         val image = onView(withId(R.id.card_usuarios))
         image.perform(click())
-        Thread.sleep(6000)
+        Thread.sleep(1000)
+
         // Wait for the RecyclerView to appear
         onView(withId(R.id.list))
             .check(matches(isDisplayed()))
 
         // Count the number of albums in the RecyclerView
-        //val albumCount = getAlbumCount(R.id.list)
+        val albumCount = getRecyclerViewItemCount(R.id.list)
 
         // Perform assertions on the album count
         // For example, assert that the count is greater than zero
-        //assertTrue(albumCount > 0)
-        val textAlbum = onView(withText("parental advisory"))
-        textAlbum.check(matches(isDisplayed()))
-
-        /*Thread.sleep(3000)
-        onView(withId(R.id.card)).perform(click())
-        //val items = onData(allOf(withId(R.id.card), withText("card"))).toList()
-        Thread.sleep(3000)*/
+        assertTrue(albumCount > 0)
     }
 
-    private fun getAlbumCount(recyclerViewId: Int): Int {
-        var albumCount = 0
-        mActivityRule?.scenario?.onActivity { activity ->
-            val recyclerView = activity.findViewById<RecyclerView>(recyclerViewId)
-            recyclerView.adapter?.let { adapter ->
-                albumCount = adapter.itemCount
+    @Test
+    fun navFromCollectorToAlbum() {
+        val image = onView(withId(R.id.card_coleccionistas))
+        image.perform(click())
+        Thread.sleep(1000)
+
+        onView(withId(R.id.navigation_album)).perform(click())
+        Thread.sleep(1000)
+
+        // Wait for the RecyclerView to appear
+        onView(withId(R.id.list))
+            .check(matches(isDisplayed()))
+
+        // Count the number of albums in the RecyclerView
+        val albumCount = getRecyclerViewItemCount(R.id.list)
+
+        // Perform assertions on the album count
+        // For example, assert that the count is greater than zero
+        assertTrue(albumCount > 0)
+    }
+
+    private fun getRecyclerViewItemCount(@IdRes recyclerViewId: Int): Int {
+        val itemCount = intArrayOf(0)
+        onView(withId(recyclerViewId)).check { view, _ ->
+            if (view is RecyclerView) {
+                itemCount[0] = view.adapter?.itemCount ?: 0
             }
         }
-        return albumCount
+        return itemCount[0]
     }
-
 
     @After
     fun tearDown() {
