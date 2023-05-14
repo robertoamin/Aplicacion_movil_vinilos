@@ -28,7 +28,7 @@ class TodoDetailsActivityTest {
     }
 
     @Test
-    fun navFromHomeToCollector() {
+    fun navFromHomeToAlbum() {
         val image = onView(withId(R.id.card_usuarios))
         image.perform(click())
         Thread.sleep(1000)
