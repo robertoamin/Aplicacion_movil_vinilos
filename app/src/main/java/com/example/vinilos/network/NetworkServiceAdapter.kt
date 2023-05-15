@@ -19,6 +19,7 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 
+
 class NetworkServiceAdapter constructor(context: Context) {
     companion object {
         const val BASE_URL = "https://back-vinilos.herokuapp.com/"
@@ -36,7 +37,7 @@ class NetworkServiceAdapter constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-    fun getAlbums(onComplete: (resp: List<Album>) -> Unit, onError: (error: VolleyError) -> Unit) {
+    suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont ->
         requestQueue.add(
             getRequest("albums",
                 { response ->
@@ -60,13 +61,14 @@ class NetworkServiceAdapter constructor(context: Context) {
                             )
                         )
                     }
-                    onComplete(list)
+                    cont.resume(list)
                     // Imprimir el tamaño de la lista en consola
                     println("#1. Tamaño de la lista de albums: ${list.size}")
                 },
-                { error ->
-                    Log.e("NETWORK_ERROR", "Error in network request: ${error.message}")
-                    onError(error)
+                {
+                    Response.ErrorListener{
+                        cont.resumeWithException(it)
+                    }
                 })
         )
     }
