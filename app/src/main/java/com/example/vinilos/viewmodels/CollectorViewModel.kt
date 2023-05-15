@@ -8,6 +8,7 @@ import com.example.vinilos.repositories.CollectorRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
 class CollectorViewModel(application: Application) :  AndroidViewModel(application) {
     private val _collectors = MutableLiveData<List<Collector>>()
@@ -41,7 +42,7 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
                 _isNetworkErrorShown.postValue(false)
             }
         }
-        catch (e:Exception){ //se procesa la excepcion
+        catch (e:HttpException){ //se procesa la excepcion
             Log.d("Error", e.toString())
             _eventNetworkError.value = true
         }
