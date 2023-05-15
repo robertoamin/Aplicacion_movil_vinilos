@@ -1,9 +1,14 @@
 package com.example.vinilos.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.models.Album
 import com.example.vinilos.repositories.AlbumRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
     private val _albums = MutableLiveData<List<Album>>()
@@ -27,13 +32,19 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     }
 
     fun refreshDataFromNetwork() {
-        albumRepository.refreshData({
-            _albums.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
+        try {
+            viewModelScope.launch(Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    val data = albumRepository.refreshData()
+                    _albums.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        } catch (e: HttpException){
+            Log.d("Error", e.toString())
             _eventNetworkError.value = true
-        })
+        }
     }
 
     fun onNetworkErrorShown() {
