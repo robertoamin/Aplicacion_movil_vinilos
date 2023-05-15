@@ -7,14 +7,9 @@ import com.example.vinilos.network.NetworkServiceAdapter
 
 class BandRepository (val application: Application) {
 
-    fun refreshData(callback: (List<Band>)->Unit, onError: (VolleyError)->Unit){
-        NetworkServiceAdapter.getInstance(application).getAllBands({
-            callback(it)
-        },{
-            onError
-        })
+    suspend fun refreshData(): List<Band>{
+        return NetworkServiceAdapter.getInstance(application).getAllBands()
     }
-
 
     fun getBandDetail(bandId: String, callback: (Band) -> Unit, onError: (VolleyError) -> Unit) {
         NetworkServiceAdapter.getInstance(application).getBandDetail(bandId,callback,onError)

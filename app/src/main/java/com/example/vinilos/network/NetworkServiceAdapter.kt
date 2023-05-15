@@ -73,7 +73,7 @@ class NetworkServiceAdapter constructor(context: Context) {
 
 
 
-    fun getAllBands(onComplete: (resp: List<Band>) -> Unit, onError: (error: VolleyError) -> Unit) {
+    suspend fun getAllBands() = suspendCoroutine<List<Band>>{ cont ->
         requestQueue.add(
             getRequest("bands",
                 { response ->
@@ -93,13 +93,14 @@ class NetworkServiceAdapter constructor(context: Context) {
                             )
                         )
                     }
-                    onComplete(list)
+                    cont.resume(list)
                     // Imprimir el tamaño de la lista en consola
                     println("#2. Tamaño de la lista de bandas: ${list.size}")
                 },
-                { error ->
-                    Log.e("NETWORK_ERROR", "Error in network request: ${error.message}")
-                    onError(error)
+                {
+                    Response.ErrorListener{
+                        cont.resumeWithException(it)
+                    }
                 })
         )
     }
