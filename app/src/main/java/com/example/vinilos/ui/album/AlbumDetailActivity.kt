@@ -1,11 +1,8 @@
 package com.example.vinilos.ui.album
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import android.widget.Toolbar
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -18,8 +15,7 @@ import com.example.vinilos.models.Album
 import com.example.vinilos.viewmodels.AlbumDetailViewModel
 import com.google.android.material.appbar.MaterialToolbar
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 
 class AlbumDetailActivity : AppCompatActivity() {

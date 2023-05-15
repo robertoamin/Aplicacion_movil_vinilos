@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.vinilos.MainActivity
 import com.example.vinilos.R
-import com.example.vinilos.ui.album.AlbumDetailActivity
 
 //@AndroidEntryPoint
 
@@ -28,6 +27,8 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("setCollectors", "true")
             startActivity(intent)
         }
+
+
     }
 
 

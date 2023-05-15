@@ -19,10 +19,10 @@
         tools:layout="@layout/fragment_album_item_list" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.vinilos.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_collector"
+        android:name="com.example.vinilos.ui.collector.CollectorFragment"
         android:label="@string/title_collector"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_collector_item_list" />
 
     <fragment
         android:id="@+id/navigation_notifications"

@@ -4,11 +4,15 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.models.Band
-import com.example.vinilos.network.NetworkServiceAdapter
+import com.example.vinilos.repositories.BandRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
 class BandViewModel(application: Application) :  AndroidViewModel(application) {
     private val _bands = MutableLiveData<List<Band>>()
-
+    private val bandsRepository = BandRepository(application)
     val albums: LiveData<List<Band>>
         get() = _bands
 
@@ -27,14 +31,19 @@ class BandViewModel(application: Application) :  AndroidViewModel(application) {
     }
 
     private fun refreshDataFromNetwork() {
-        NetworkServiceAdapter.getInstance(getApplication()).getAllBands({
-            _bands.postValue(it)
-            Log.d("BandViewModel", "Bands retrieved: ${it.size}")
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
+        try {
+            viewModelScope.launch(Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    val data = bandsRepository.refreshData()
+                    _bands.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        } catch (e: HttpException) {
+            Log.d("Error", e.toString())
             _eventNetworkError.value = true
-        })
+        }
     }
 
     fun onNetworkErrorShown() {

@@ -8,12 +8,16 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.vinilos.brokers.VolleyBroker
 
 import com.example.vinilos.models.Album
 import com.example.vinilos.models.Band
+import com.example.vinilos.models.Collector
 import org.json.JSONArray
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
+
 
 
 class NetworkServiceAdapter constructor(context: Context) {
@@ -33,17 +37,17 @@ class NetworkServiceAdapter constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-    fun getAlbums(onComplete: (resp: List<Album>) -> Unit, onError: (error: VolleyError) -> Unit) {
+    suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont ->
         requestQueue.add(
             getRequest("albums",
                 { response ->
                     val resp = JSONArray(response)
                     Log.d("RESPONSE_SIZE", "Size of response: ${resp.length()}")
                     Log.d("RESPONSE", "Response from server: $resp")
-
+                    var item:JSONObject
                     val list = mutableListOf<Album>()
                     for (i in 0 until resp.length()) {
-                        val item = resp.getJSONObject(i)
+                        item = resp.getJSONObject(i)
                         list.add(
                             i,
                             Album(
@@ -57,28 +61,30 @@ class NetworkServiceAdapter constructor(context: Context) {
                             )
                         )
                     }
-                    onComplete(list)
+                    cont.resume(list)
                     // Imprimir el tamaño de la lista en consola
                     println("#1. Tamaño de la lista de albums: ${list.size}")
                 },
-                { error ->
-                    Log.e("NETWORK_ERROR", "Error in network request: ${error.message}")
-                    onError(error)
+                {
+                    Response.ErrorListener{
+                        cont.resumeWithException(it)
+                    }
                 })
         )
     }
 
 
 
-    fun getAllBands(onComplete: (resp: List<Band>) -> Unit, onError: (error: VolleyError) -> Unit) {
+    suspend fun getAllBands() = suspendCoroutine<List<Band>>{ cont ->
         requestQueue.add(
             getRequest("bands",
                 { response ->
                     val resp = JSONArray(response)
                     Log.d("RESPONSE_SIZE", "Size of response: ${resp.length()}")
+                    var item:JSONObject
                     val list = mutableListOf<Band>()
                     for (i in 0 until resp.length()) {
-                        val item = resp.getJSONObject(i)
+                        item = resp.getJSONObject(i)
                         list.add(
                             i,
                             Band(
@@ -89,13 +95,14 @@ class NetworkServiceAdapter constructor(context: Context) {
                             )
                         )
                     }
-                    onComplete(list)
+                    cont.resume(list)
                     // Imprimir el tamaño de la lista en consola
                     println("#2. Tamaño de la lista de bandas: ${list.size}")
                 },
-                { error ->
-                    Log.e("NETWORK_ERROR", "Error in network request: ${error.message}")
-                    onError(error)
+                {
+                    Response.ErrorListener{
+                        cont.resumeWithException(it)
+                    }
                 })
         )
     }
@@ -128,6 +135,55 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
+    fun getBandDetail(
+        bandId: String,
+        onComplete: (resp: Band) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        requestQueue.add(
+            getRequest(
+                "bands/$bandId",
+                { response ->
+                    val bandJson = JSONObject(response)
+                    val bandDetail = Band(
+                        bandJson.getInt("id"),
+                        bandJson.getString("name"),
+                        bandJson.getString("description"),
+                        bandJson.getString("image")
+                    )
+                    onComplete(bandDetail)
+                },
+                { error ->
+                    onError(error)
+                }
+            )
+        )
+    }
+
+
+    suspend fun getCollectors() = suspendCoroutine<List<Collector>>{ cont ->
+        requestQueue.add(getRequest("collectors",
+            Response.Listener<String>{ response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Collector>()
+                var item: JSONObject
+                for (i in 0 until resp.length()) {
+                    item = resp.getJSONObject(i)
+                    list.add(i,
+                        Collector(
+                            id = item.getInt("id"),
+                            name = item.getString("name"),
+                            telephone = item.getString("telephone"),
+                            email = item.getString("email")))
+                }
+                cont.resume(list)
+            },
+            Response.ErrorListener{
+                cont.resumeWithException(it)
+            }))
+    }
+
+
     fun crearAlbum(album: Album, onComplete: () -> Unit, onError: (error: VolleyError) -> Unit) {
         val albumJson = JSONObject().apply {
             put("name", album.name)
@@ -142,7 +198,7 @@ class NetworkServiceAdapter constructor(context: Context) {
             Request.Method.POST,
             BASE_URL + "albums",
             albumJson,
-            { _ ->
+            {
                 onComplete()
             },
             { error ->
@@ -154,10 +210,10 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
 
     fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
-        return StringRequest(Request.Method.GET, VolleyBroker.BASE_URL +path, responseListener,errorListener)
+        return StringRequest(Request.Method.GET, BASE_URL +path, responseListener,errorListener)
     }
     fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.POST, VolleyBroker.BASE_URL +path, body, responseListener, errorListener)
+        return  JsonObjectRequest(Request.Method.POST, BASE_URL +path, body, responseListener, errorListener)
     }
 
 }
