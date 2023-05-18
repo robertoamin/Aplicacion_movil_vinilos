@@ -2,11 +2,15 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
-
+apply plugin: 'kotlin-kapt'
 android {
     namespace 'com.example.vinilos'
     compileSdk 33
-
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/vinyls_database")
+        }
+    }
     dataBinding {
         enabled true
     }
@@ -68,9 +72,6 @@ dependencies {
     implementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
     androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
 
-
-
-
     testImplementation "androidx.test:core:1.1.5"
     // Optional -- Mockito framework
     testImplementation "org.mockito:mockito-core:1.1.5"
@@ -78,4 +79,10 @@ dependencies {
     testImplementation "org.mockito.kotlin:mockito-kotlin:1.1.5"
     // Optional -- Mockk framework
     testImplementation "io.mockk:mockk:1.1.5"
+
+    // Room components
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+
 }

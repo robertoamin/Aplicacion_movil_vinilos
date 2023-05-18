@@ -1,14 +1,21 @@
 package com.example.vinilos.repositories
 
 import android.app.Application
-import com.android.volley.VolleyError
+import android.content.Context
+import android.net.ConnectivityManager
+import com.example.vinilos.database.dao.CollectorsDao
 import com.example.vinilos.models.Collector
 import com.example.vinilos.network.NetworkServiceAdapter
 
-class CollectorRepository (val application: Application) {
 
+class CollectorRepository (val application: Application, private val collectorsDao: CollectorsDao){
     suspend fun refreshData(): List<Collector>{
-        //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
-        return NetworkServiceAdapter.getInstance(application).getCollectors()
+        var cached = collectorsDao.getCollectors()
+        return if(cached.isNullOrEmpty()){
+            val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
+                emptyList()
+            } else NetworkServiceAdapter.getInstance(application).getCollectors()
+        } else cached
     }
 }

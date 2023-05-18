@@ -1,0 +1,22 @@
+package com.example.vinilos.database.dao
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.example.vinilos.models.Band
+
+
+@Dao
+interface BandsDao {
+    // Listado de Bandas
+    @Query("SELECT * FROM bands_table")
+    fun getBands():List<Band>
+   // insertar banda
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insert(band:Band)
+/*     // Detalle de Banda
+    @Query("SELECT * FROM bands_table WHERE bandId = :bandId")
+    fun getBanda(bandInt: Int):List<Band>
+*/
+}
