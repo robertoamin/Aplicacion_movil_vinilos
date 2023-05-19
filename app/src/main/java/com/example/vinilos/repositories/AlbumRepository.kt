@@ -20,10 +20,10 @@ class AlbumRepository (val application: Application, private val albumsDao: Albu
             if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
                 emptyList()
             } else {
-                var busqueda = networkServiceAdapter.getAlbums()
-                albumsDao.insertMany(*busqueda.toTypedArray())
-                Log.d("tamaño", "albums: ${busqueda.size}")
-                return busqueda
+                var busquedaA = networkServiceAdapter.getAlbums()
+                albumsDao.insertMany(*busquedaA.toTypedArray())
+                Log.d("tamaño", "albums: ${busquedaA.size}")
+                return busquedaA
             }
         } else cached
     }

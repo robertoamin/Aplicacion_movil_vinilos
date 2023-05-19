@@ -20,10 +20,10 @@ class CollectorRepository (val application: Application, private val collectorsD
                 emptyList()
             } else {
                 NetworkServiceAdapter.getInstance(application).getCollectors()
-                var busqueda = networkServiceAdapter.getCollectors()
-                collectorsDao.insertMany(*busqueda.toTypedArray())
-                Log.d("tamaño", "colecionistas: ${busqueda.size}")
-                return busqueda
+                var busquedaC = networkServiceAdapter.getCollectors()
+                collectorsDao.insertMany(*busquedaC.toTypedArray())
+                Log.d("tamaño", "colecionistas: ${busquedaC.size}")
+                return busquedaC
 
             }
         } else cached
