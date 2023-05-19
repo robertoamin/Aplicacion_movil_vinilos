@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.vinilos.models.Album
 import com.example.vinilos.models.Band
 
 
@@ -14,7 +15,11 @@ interface BandsDao {
     fun getBands():List<Band>
    // insertar banda
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(band:Band)
+    suspend fun insert(band:Band)
+
+    //Insertar Bandas
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMany(vararg bands:Band)
 /*     // Detalle de Banda
     @Query("SELECT * FROM bands_table WHERE bandId = :bandId")
     fun getBanda(bandInt: Int):List<Band>

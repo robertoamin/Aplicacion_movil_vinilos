@@ -3,6 +3,7 @@ package com.example.vinilos.repositories
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
+import android.util.Log
 import com.android.volley.VolleyError
 import com.example.vinilos.database.dao.BandsDao
 import com.example.vinilos.models.Band
@@ -10,13 +11,20 @@ import com.example.vinilos.network.NetworkServiceAdapter
 
 
 class BandRepository (val application: Application, private val bandsDao: BandsDao){
+    private val networkServiceAdapter = NetworkServiceAdapter.getInstance(application)
     suspend fun refreshData(): List<Band>{
         var cached = bandsDao.getBands()
         return if(cached.isNullOrEmpty()){
             val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
                 emptyList()
-            } else NetworkServiceAdapter.getInstance(application).getAllBands()
+            } else {
+                var busqueda = networkServiceAdapter.getAllBands()
+                bandsDao.insertMany(*busqueda.toTypedArray())
+                Log.d("tamaño", "albums: ${busqueda.size}")
+                return busqueda
+            }
+
         } else cached
     }
 

@@ -11,14 +11,17 @@ interface AlbumsDao {
     // listar albums
     @Query("SELECT * FROM albums_table")
     fun getAlbums():List<Album>
-    // insertar album
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(album:Album)
-  /*/ Detalle de album
+   // insertar album
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(album:Album)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMany(vararg albums: Album)
+   // Detalle de album
     @Query("SELECT * FROM albums_table WHERE albumId = :albumId")
     fun getAlbum(albumId:Int):List<Album>
 
     @Query("DELETE FROM albums_table")
     suspend fun deleteAll()
-*/
+
 }
