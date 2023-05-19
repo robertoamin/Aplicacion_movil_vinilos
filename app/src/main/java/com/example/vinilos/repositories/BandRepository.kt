@@ -14,13 +14,17 @@ class BandRepository (val application: Application, private val bandsDao: BandsD
     private val networkServiceAdapter = NetworkServiceAdapter.getInstance(application)
     suspend fun refreshData(): List<Band>{
         var cached = bandsDao.getBands()
+        bandsDao.deleteAll()
         return if(cached.isNullOrEmpty()){
             val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
                 emptyList()
             } else {
-                bandsDao.insertMany(*networkServiceAdapter.getAllBands().toTypedArray())
-                return networkServiceAdapter.getAllBands()
+
+                var busquedaB = networkServiceAdapter.getAllBands()
+                bandsDao.insertMany(busquedaB)
+                Log.d("tamaño", "artistas: ${busquedaB.size}")
+                return busquedaB
             }
 
         } else cached

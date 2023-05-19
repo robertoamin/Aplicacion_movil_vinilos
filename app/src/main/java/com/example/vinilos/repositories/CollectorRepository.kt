@@ -14,14 +14,17 @@ class CollectorRepository (val application: Application, private val collectorsD
     private val networkServiceAdapter = NetworkServiceAdapter.getInstance(application)
     suspend fun refreshData(): List<Collector>{
         var cached = collectorsDao.getCollectors()
+        collectorsDao.deleteAll()
         return if(cached.isNullOrEmpty()){
             val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
                 emptyList()
             } else {
 
-                collectorsDao.insertMany(*networkServiceAdapter.getCollectors().toTypedArray())
-                return networkServiceAdapter.getCollectors()
+                var busquedaC = networkServiceAdapter.getCollectors()
+                collectorsDao.insertMany(busquedaC)
+                Log.d("tamaño", "Coleccionistas: ${busquedaC.size}")
+                return busquedaC
 
             }
         } else cached

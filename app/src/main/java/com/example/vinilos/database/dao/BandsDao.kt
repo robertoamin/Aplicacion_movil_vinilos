@@ -19,9 +19,12 @@ interface BandsDao {
 
     //Insertar Bandas
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMany(vararg bands:Band)
+    suspend fun insertMany(bands:List<Band>)
 /*     // Detalle de Banda
     @Query("SELECT * FROM bands_table WHERE bandId = :bandId")
     fun getBanda(bandInt: Int):List<Band>
 */
+    @Query("DELETE FROM bands_table")
+    suspend fun deleteAll()
+
 }

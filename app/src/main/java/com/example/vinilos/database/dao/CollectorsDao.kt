@@ -18,6 +18,10 @@ interface CollectorsDao {
 
     // insertar coleccionistas
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMany(vararg collectors:Collector)
+    suspend fun insertMany(collectors:List<Collector>)
+
+    @Query("DELETE FROM collectors_table")
+    suspend fun deleteAll()
+
 
 }
