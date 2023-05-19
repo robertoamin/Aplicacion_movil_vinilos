@@ -19,11 +19,9 @@ class CollectorRepository (val application: Application, private val collectorsD
             if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
                 emptyList()
             } else {
-                NetworkServiceAdapter.getInstance(application).getCollectors()
-                var busquedaC = networkServiceAdapter.getCollectors()
-                collectorsDao.insertMany(*busquedaC.toTypedArray())
-                Log.d("tamaño", "colecionistas: ${busquedaC.size}")
-                return busquedaC
+
+                collectorsDao.insertMany(*networkServiceAdapter.getCollectors().toTypedArray())
+                return networkServiceAdapter.getCollectors()
 
             }
         } else cached

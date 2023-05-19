@@ -19,10 +19,8 @@ class BandRepository (val application: Application, private val bandsDao: BandsD
             if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
                 emptyList()
             } else {
-                var busquedaB = networkServiceAdapter.getAllBands()
-                bandsDao.insertMany(*busquedaB.toTypedArray())
-                Log.d("tamaño", "albums: ${busquedaB.size}")
-                return busquedaB
+                bandsDao.insertMany(*networkServiceAdapter.getAllBands().toTypedArray())
+                return networkServiceAdapter.getAllBands()
             }
 
         } else cached
