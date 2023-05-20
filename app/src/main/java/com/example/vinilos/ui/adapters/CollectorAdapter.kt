@@ -1,13 +1,17 @@
 package com.example.vinilos.ui.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentCollectorItemBinding
 import com.example.vinilos.models.Collector
+import com.example.vinilos.ui.band.BandDetailActivity
+import com.example.vinilos.ui.collector.CollectorDetailActivity
 
 class CollectorAdapter : RecyclerView.Adapter<CollectorAdapter.BandViewHolder>() {
 
@@ -34,14 +38,15 @@ class CollectorAdapter : RecyclerView.Adapter<CollectorAdapter.BandViewHolder>()
         }
 
         /*Glide.with(holder.itemView)
-            .load(collector.image)
-            .into(holder.viewDataBinding.imageArtist)*/
+            .load(collector.name)
+            .into(holder.viewDataBinding.card)*/
 
-//        holder.viewDataBinding.root.setOnClickListener {
-//            val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].albumId)
-//            // Navigate using that action
-//            holder.viewDataBinding.root.findNavController().navigate(action)
-//        }
+        holder.viewDataBinding.card.setOnClickListener {
+            val context = holder.viewDataBinding.root.context
+            val intent = Intent(context, CollectorDetailActivity::class.java)
+            intent.putExtra("collectorId", collector.id.toString())
+            context.startActivity(intent)
+        }
     }
 
 
