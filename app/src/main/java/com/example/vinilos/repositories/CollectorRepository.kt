@@ -1,6 +1,8 @@
 package com.example.vinilos.repositories
 
 import android.app.Application
+import com.android.volley.VolleyError
+import com.example.vinilos.models.Band
 import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Log
@@ -29,5 +31,15 @@ class CollectorRepository (val application: Application, private val collectorsD
             }
         } else cached
     }
-}
 
+
+    suspend fun getCollectorDetail(collectorId: String): Collector{
+        return NetworkServiceAdapter.getInstance(
+            application).getCollectorDetail(collectorId)
+    }
+
+    suspend fun getCollectorFavoritePerformers(collectorId: String): List<Band>{
+        return NetworkServiceAdapter.getInstance(
+            application).getCollectorsFavoritePerformers(collectorId)
+    }
+}

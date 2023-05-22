@@ -12,6 +12,10 @@ La funcionalidad principal de la aplicación incluye:
 
 - Listado de artistas musicales con detalles como género, discografía y biografía.
 - Listado de álbumes musicales con información detallada como título, artista, año de lanzamiento, portada y lista de canciones.
+- Crear Album con nombre, descripcion, cover, release date, gender y casa musical
+- Ver el detalle de un Album
+- Ver el detalle de un artista
+- Listado de coleccionistas con nombre y la inicial
 - Control de colecciones de música, permitiendo a los coleccionistas marcar los álbumes que poseen.
 - Opción para marcar artistas como favoritos y recibir recomendaciones personalizadas.
 
@@ -19,7 +23,7 @@ La funcionalidad principal de la aplicación incluye:
 
 - Android 13.0 Google API 33 o superior.
 - Emulador usado: Device Pixel_3a_API33_x86_64
-- Librerias utilizadas: Glide, Volley, recyclerview
+- Librerias utilizadas: Glide, Volley, recyclerview, Junitest, kotlinx.coorutines, espresso
 - Java version 1.8
 - Conexión a Internet.
 
@@ -35,12 +39,13 @@ La funcionalidad principal de la aplicación incluye:
 1. Al abrir la aplicación, se mostrará un menu principal con 2 cards: Usuario y Coleccionista
 2. Como Usuario, haz clic en Usuario para ver la lista de albums musicales disponibles
 3. Haz clic en un card de la lista de albums para ver los detalles, como el cover, release date, genre, descripcion, etc.
-4. regresa con la flecha del menu superior a la lista de albums musicales disponibles.
-5. Puedes regresar al menu principal dando clic en el boton con figura de casita en la barra de menu inferior
-6. Si eres un coleccionista, haz clic en Coleccionista para ver la lista de estos, sin embargo en esta entrega esa lista aun no esta desarrollada por lo que te saldara una pantalla sin informacion.
-7. Aun cuando en esta pantalla no se despliega aun informacion, si hay una barra de menu inferior, en donde puedes dar clic en artistas y te llevara al listado de artistas disponibles.
-8. En futuras versiones se podra acceder a la informacion detallada del artista seleccionado.
-9. Desde la vista de listado de artista, puedes navegar por la aplicacion a traves del menu de la barra inferior.
+4. Puedes crear un nuevo Album desde el listado de albums, dandole click al boton con el +, permite adicionar un album
+5. Regresa con la flecha del menu superior a la lista de albums musicales disponibles.
+6. Puedes regresar al menu principal dando clic en el boton con figura de casita en la barra de menu inferior
+7. Si eres un coleccionista, haz clic en Coleccionista para ver la lista de estos, sin embargo en esta entrega esa lista aun no esta desarrollada por lo que te saldara una pantalla sin informacion.
+8. Aun cuando en esta pantalla no se despliega aun informacion, si hay una barra de menu inferior, en donde puedes dar clic en artistas y te llevara al listado de artistas disponibles.
+9. En futuras versiones se podra acceder a la informacion detallada del artista seleccionado.
+10. Desde la vista de listado de artista, puedes navegar por la aplicacion a traves del menu de la barra inferior.
 
 
 ## Tecnologías Utilizadas
