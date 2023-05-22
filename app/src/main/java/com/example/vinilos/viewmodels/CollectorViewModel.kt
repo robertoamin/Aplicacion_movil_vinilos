@@ -3,6 +3,7 @@ package com.example.vinilos.viewmodels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.vinilos.database.dao.VinylRoomDatabase
 import com.example.vinilos.models.Collector
 import com.example.vinilos.repositories.CollectorRepository
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +13,7 @@ import retrofit2.HttpException
 
 class CollectorViewModel(application: Application) :  AndroidViewModel(application) {
     private val _collectors = MutableLiveData<List<Collector>>()
-    private val collectorRepository = CollectorRepository(application)
+    private val collectorRepository = CollectorRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).collectorsDao())
 
     val collectors: LiveData<List<Collector>>
         get() = _collectors

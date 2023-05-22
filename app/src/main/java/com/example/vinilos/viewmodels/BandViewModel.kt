@@ -3,8 +3,10 @@ package com.example.vinilos.viewmodels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.vinilos.database.dao.VinylRoomDatabase
 import com.example.vinilos.models.Band
 import com.example.vinilos.repositories.BandRepository
+import com.example.vinilos.repositories.CollectorRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -12,7 +14,8 @@ import retrofit2.HttpException
 
 class BandViewModel(application: Application) :  AndroidViewModel(application) {
     private val _bands = MutableLiveData<List<Band>>()
-    private val bandsRepository = BandRepository(application)
+    private val bandsRepository = BandRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).bandsDao())
+
     val albums: LiveData<List<Band>>
         get() = _bands
 
