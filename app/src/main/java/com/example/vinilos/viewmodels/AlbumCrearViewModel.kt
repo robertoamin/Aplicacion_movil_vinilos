@@ -4,11 +4,14 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.vinilos.database.dao.VinylRoomDatabase
 import com.example.vinilos.models.Album
 import com.example.vinilos.repositories.AlbumRepository
 
 class AlbumCrearViewModel(application: Application) : AndroidViewModel(application) {
-    private val albumRepository = AlbumRepository(application)
+
+    private val albumRepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
+
     private val _albumCreado = MutableLiveData<Boolean>()
     val albumCreado: LiveData<Boolean>
         get() = _albumCreado
