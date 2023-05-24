@@ -3,6 +3,7 @@ package com.example.vinilos.viewmodels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.vinilos.database.dao.VinylRoomDatabase
 import com.example.vinilos.models.Band
 import com.example.vinilos.repositories.CollectorRepository
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +13,8 @@ import retrofit2.HttpException
 
 class FavoritePerformersViewModel(application: Application, collectorId: String) :  AndroidViewModel(application) {
     private val _favoritePerformers = MutableLiveData<List<Band>>()
-    private val collectorRepository = CollectorRepository(application)
+    private val collectorRepository = CollectorRepository(application,
+        VinylRoomDatabase.getDatabase(application.applicationContext).collectorsDao())
     private val collectorId: String = collectorId
     val favoritePerformers: LiveData<List<Band>>
         get() = _favoritePerformers
