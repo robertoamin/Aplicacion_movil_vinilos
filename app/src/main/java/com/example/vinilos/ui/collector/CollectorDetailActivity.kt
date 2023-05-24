@@ -46,7 +46,7 @@ class CollectorDetailActivity : AppCompatActivity() {
         appBar.setNavigationOnClickListener {
             // Handle navigation icon press
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("listCollectors", "true")
+            intent.putExtra("setCollectors", "true")
             startActivity(intent)
         }
 
