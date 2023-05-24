@@ -3,6 +3,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.bumptech.glide.load.HttpException
+import com.example.vinilos.database.dao.VinylRoomDatabase
 import com.example.vinilos.models.Band
 import com.example.vinilos.models.Collector
 import com.example.vinilos.repositories.BandRepository
@@ -12,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CollectorDetailViewModel(application: Application, collectorId:String): AndroidViewModel(application) {
-    private val collectorRepository: CollectorRepository = CollectorRepository(application)
+    private val collectorRepository: CollectorRepository = CollectorRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).collectorsDao())
     private val _collector = MutableLiveData<Collector>()
 
     val collector: LiveData<Collector>

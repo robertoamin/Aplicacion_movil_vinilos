@@ -60,6 +60,7 @@
 
                     <!-- Title, secondary and supporting text -->
                     <TextView
+                        android:id="@+id/collecor_list_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{collector.name}"
