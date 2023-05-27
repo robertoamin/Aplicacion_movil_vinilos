@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:hint="Cover"
+            android:hint="@string/hint_albums_cover"
             app:helperText="@string/cover_album"
             app:helperTextEnabled="true"
             app:startIconContentDescription="@string/cover_album">

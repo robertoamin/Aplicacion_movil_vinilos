@@ -6,11 +6,9 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentCollectorItemBinding
 import com.example.vinilos.models.Collector
-import com.example.vinilos.ui.band.BandDetailActivity
 import com.example.vinilos.ui.collector.CollectorDetailActivity
 
 class CollectorAdapter : RecyclerView.Adapter<CollectorAdapter.BandViewHolder>() {
@@ -36,10 +34,6 @@ class CollectorAdapter : RecyclerView.Adapter<CollectorAdapter.BandViewHolder>()
         holder.viewDataBinding.also {
             it.collector= collector
         }
-
-        /*Glide.with(holder.itemView)
-            .load(collector.name)
-            .into(holder.viewDataBinding.card)*/
 
         holder.viewDataBinding.card.setOnClickListener {
             val context = holder.viewDataBinding.root.context

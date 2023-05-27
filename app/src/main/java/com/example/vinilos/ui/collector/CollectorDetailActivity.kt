@@ -42,9 +42,7 @@ class CollectorDetailActivity : AppCompatActivity() {
         viewModel.collector.observe(this, Observer<Collector> { collector ->
 
             binding.collector = collector
-            /*Glide.with(binding.root)
-                .load(band.image)
-                .into(binding.imageArtist)*/
+
         })
 
         viewModel.eventNetworkError.observe(this, Observer<Boolean> { isNetworkError ->

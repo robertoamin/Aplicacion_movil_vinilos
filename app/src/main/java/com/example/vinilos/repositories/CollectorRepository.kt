@@ -1,7 +1,6 @@
 package com.example.vinilos.repositories
 
 import android.app.Application
-import com.android.volley.VolleyError
 import com.example.vinilos.models.Band
 import android.content.Context
 import android.net.ConnectivityManager
@@ -9,7 +8,6 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.vinilos.database.dao.CollectorsDao
-import com.example.vinilos.models.Album
 import com.example.vinilos.models.Collector
 import com.example.vinilos.network.NetworkServiceAdapter
 import org.json.JSONObject

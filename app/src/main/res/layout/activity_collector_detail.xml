@@ -52,7 +52,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/mobile_friendly_24px"
-                        android:contentDescription="Mobile Icon" />
+                        android:contentDescription="@string/contentDescriptionCollectorDetail" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/mail_outline"
-                        android:contentDescription="Email Icon" />
+                        android:contentDescription="@string/contentDescriptionCollectorEmailDetail" />
 
                     <TextView
                         android:layout_marginLeft="8dp"
@@ -116,7 +116,7 @@
                         android:layout_width="29dp"
                         android:layout_height="32dp"
                         android:src="@drawable/star_border"
-                        android:contentDescription="Star" />
+                        android:contentDescription="@string/contentDescriptionCollectorStarDetail" />
 
                     <TextView
                         android:justificationMode="inter_word"
