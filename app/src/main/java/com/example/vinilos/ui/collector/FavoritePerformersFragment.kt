@@ -1,6 +1,5 @@
 package com.example.vinilos.ui.collector
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentCollectorItemListBinding
 import com.example.vinilos.models.Band
-import com.example.vinilos.models.Collector
-import com.example.vinilos.ui.adapters.CollectorAdapter
 import com.example.vinilos.ui.adapters.FavoritePerformersAdapter
-import com.example.vinilos.viewmodels.CollectorViewModel
 import com.example.vinilos.viewmodels.FavoritePerformersViewModel
 
 

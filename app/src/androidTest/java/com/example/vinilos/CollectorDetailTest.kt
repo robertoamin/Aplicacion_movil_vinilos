@@ -70,6 +70,7 @@ class TodoCollectorDetailActivityTest {
 
     @After
     fun tearDown() {
+        Thread.sleep(1000)
         //clean up code
     }
 }

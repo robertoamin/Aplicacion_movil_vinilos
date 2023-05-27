@@ -11,6 +11,7 @@
     <string name="hint_albums_description">Descripción</string>
     <string name="hint_albums_release_date">Fecha de Lanzamiento</string>
     <string name="hint_albums_genre">Género</string>
+    <string name="hint_albums_cover">Foto</string>
     <string name="hint_albums_record_label">Discográfica</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_crear_album">Crear Álbum</string>
@@ -39,5 +40,10 @@
     <string name="email">Email</string>
     <string name="favoritos">Favoritos</string>
 
+    <string name="contentDescriptionBandDetail">nombre del artista</string>
+    <string name="contentDescriptionCollectorDetail">Icono Movil</string>
+    <string name="contentDescriptionCollectorEmailDetail">Icono Email</string>
+    <string name="contentDescriptionCollectorStarDetail">Icono Estrella</string>
+    <string name="contentDescriptionRegresar">Regresar al menu anterior</string>
 
 </resources>
