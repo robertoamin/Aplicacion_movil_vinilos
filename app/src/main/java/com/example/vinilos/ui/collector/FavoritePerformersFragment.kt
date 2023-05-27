@@ -66,6 +66,11 @@ class FavoritePerformersFragment() : Fragment() {
         _binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshDataFromNetwork()
+    }
+
     private fun onNetworkError() {
         if(!viewModel.isNetworkErrorShown.value!!) {
             Toast.makeText(activity, "Network Error", Toast.LENGTH_LONG).show()

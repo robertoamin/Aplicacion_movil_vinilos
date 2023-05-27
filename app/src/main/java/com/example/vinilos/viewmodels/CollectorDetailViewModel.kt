@@ -31,11 +31,11 @@ class CollectorDetailViewModel(application: Application, collectorId:String): An
 
     private val collectorId: String = collectorId
 
-    private fun refreshDataFromNetwork() {
+    fun refreshDataFromNetwork() {
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = collectorRepository.getCollectorDetail(collectorId)
+                    val data = collectorRepository.getCollectorDetail(collectorId)
                     _collector.postValue(data)
                 }
                 _eventNetworkError.postValue(false)

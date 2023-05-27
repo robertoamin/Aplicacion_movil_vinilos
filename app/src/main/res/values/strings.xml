@@ -22,6 +22,7 @@
     <string name="descripcion_album">detalle una descripcion del album</string>
     <string name="nombre_album">Ingrese el nombre del album</string>
     <string name="fab_content_desc">Crear un album</string>
+    <string name="add_favorte_fab_content_desc">Añadir favorito</string>
     <string name="cover_album">Ingrese la URL de foto del album</string>
     <string name="releasedate_album">Ingrese fecha lanzamiento album</string>
     <string name="genre_album">Ingrese el genero musical</string>
@@ -39,6 +40,9 @@
     <string name="mobile">Télefono</string>
     <string name="email">Email</string>
     <string name="favoritos">Favoritos</string>
+    <string name="add_performers_to_favorite_title">Agregar artista</string>
+    <string name="favorite_performers_text_field">Nombre</string>
+    <string name="favorite_performers_error_message">Seleccionar un artista</string>
 
     <string name="contentDescriptionBandDetail">nombre del artista</string>
     <string name="contentDescriptionCollectorDetail">Icono Movil</string>

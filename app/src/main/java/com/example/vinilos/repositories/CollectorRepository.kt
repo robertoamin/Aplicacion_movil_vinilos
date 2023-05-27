@@ -5,9 +5,12 @@ import com.example.vinilos.models.Band
 import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Log
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.vinilos.database.dao.CollectorsDao
 import com.example.vinilos.models.Collector
 import com.example.vinilos.network.NetworkServiceAdapter
+import org.json.JSONObject
 
 
 class CollectorRepository (val application: Application, private val collectorsDao: CollectorsDao){
@@ -39,5 +42,9 @@ class CollectorRepository (val application: Application, private val collectorsD
     suspend fun getCollectorFavoritePerformers(collectorId: String): List<Band>{
         return NetworkServiceAdapter.getInstance(
             application).getCollectorsFavoritePerformers(collectorId)
+    }
+
+    fun addFavoriteBand(bandId: Int, collectorId: String, onSuccess: () -> Unit, onError: (VolleyError) -> Unit) {
+        networkServiceAdapter.addFavoriteBandToCollector(bandId, collectorId, onSuccess, onError)
     }
 }

@@ -33,7 +33,7 @@ class FavoritePerformersViewModel(application: Application, collectorId: String)
         refreshDataFromNetwork()
     }
 
-    private fun refreshDataFromNetwork() {
+    fun refreshDataFromNetwork() {
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.collector.CollectorAddFavoritePerformers">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            app:navigationIcon="@drawable/baseline_arrow_back_24"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/add_performers_to_favorite_title"
+            android:contentDescription="@string/add_performers_to_favorite_title"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:paddingTop="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBar">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/performersSelect"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:hint="@string/favorite_performers_text_field">
+
+            <AutoCompleteTextView
+                android:id="@+id/editTextFavoritePerformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/favorite_performers_text_field"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="end">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelar"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_marginEnd="16dp"
+            android:onClick="handleOnCancel"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/guardar"
+            android:textColor="@color/black"
+            app:backgroundTint="?attr/colorSecondaryContainer"
+            android:onClick="handleOnSave"
+            style="?attr/materialButtonOutlinedStyle"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
