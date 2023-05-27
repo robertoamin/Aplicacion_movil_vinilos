@@ -5,13 +5,10 @@ import com.example.vinilos.models.Band
 import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Log
-import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.VolleyError
 import com.example.vinilos.database.dao.CollectorsDao
 import com.example.vinilos.models.Collector
 import com.example.vinilos.network.NetworkServiceAdapter
-import org.json.JSONObject
-
 
 class CollectorRepository (val application: Application, private val collectorsDao: CollectorsDao){
     private val networkServiceAdapter = NetworkServiceAdapter.getInstance(application)
