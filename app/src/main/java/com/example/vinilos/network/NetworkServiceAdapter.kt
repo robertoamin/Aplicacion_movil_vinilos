@@ -225,8 +225,22 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
 
 
+    fun addFavoriteBandToCollector(bandId: Int, collectorId: String, onComplete: () -> Unit, onError: (error: VolleyError) -> Unit) {
 
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            "${BASE_URL}collectors/${collectorId}/bands/${bandId}",
+            null,
+            {
+                onComplete()
+            },
+            { error ->
+                onError(error)
+            }
+        )
 
+        requestQueue.add(request)
+    }
 
     fun crearAlbum(album: Album, onComplete: () -> Unit, onError: (error: VolleyError) -> Unit) {
         val albumJson = JSONObject().apply {

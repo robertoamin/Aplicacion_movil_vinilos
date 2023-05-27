@@ -21,6 +21,7 @@
     <string name="home_user_label">User</string>
     <string name="home_second_user_label">Collector</string>
     <string name="descripcion_album">Specify an album description</string>
+    <string name="add_favorte_fab_content_desc">Add favorite</string>
     <string name="nombre_album">Enter the album\'s name</string>
     <string name="fab_content_desc">Create an album</string>
     <string name="cover_album">Enter the album photo URL</string>
@@ -40,9 +41,7 @@
     <string name="mobile">Telephone</string>
     <string name="email">Email</string>
     <string name="favoritos">Favorites</string>
-
-
-
-
-
+    <string name="add_performers_to_favorite_title">Add artists to favorite</string>
+    <string name="favorite_performers_text_field">Name</string>
+    <string name="favorite_performers_error_message">Select an artist</string>
 </resources>

@@ -12,6 +12,8 @@ import com.example.vinilos.databinding.ActivityCollectorDetailBinding
 import com.example.vinilos.models.Collector
 import com.example.vinilos.viewmodels.CollectorDetailViewModel
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.activity.result.ActivityResultLauncher;
 
 
 class CollectorDetailActivity : AppCompatActivity() {
@@ -25,6 +27,14 @@ class CollectorDetailActivity : AppCompatActivity() {
         val collectorId = intent?.extras?.getString("collectorId").toString()
         binding = ActivityCollectorDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val view = binding.root
+        val addFavoriteButton: FloatingActionButton = view.findViewById(R.id._favorite_action_button)
+
+        addFavoriteButton.setOnClickListener {
+            val intent = Intent(this, CollectorAddFavoritePerformers::class.java)
+            intent.putExtra("collectorId", collectorId)
+            startActivity(intent)
+        }
 
         viewModel = ViewModelProvider(this, CollectorDetailViewModel.Factory(this.application, collectorId)).get(
             CollectorDetailViewModel::class.java)
@@ -59,6 +69,11 @@ class CollectorDetailActivity : AppCompatActivity() {
             .replace(R.id.fp_fragment, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshDataFromNetwork()
     }
 
     private fun onNetworkError() {
