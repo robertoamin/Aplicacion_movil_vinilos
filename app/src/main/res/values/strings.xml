@@ -7,6 +7,12 @@
     <string name="artists">Artistas</string>
 
     <string name="title_albums">Álbumes</string>
+    <string name="hint_albums_name">Nombre del Álbum</string>
+    <string name="hint_albums_description">Descripción</string>
+    <string name="hint_albums_release_date">Fecha de Lanzamiento</string>
+    <string name="hint_albums_genre">Género</string>
+    <string name="hint_albums_cover">Foto</string>
+    <string name="hint_albums_record_label">Discográfica</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_crear_album">Crear Álbum</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -16,6 +22,7 @@
     <string name="descripcion_album">detalle una descripcion del album</string>
     <string name="nombre_album">Ingrese el nombre del album</string>
     <string name="fab_content_desc">Crear un album</string>
+    <string name="add_favorte_fab_content_desc">Añadir favorito</string>
     <string name="cover_album">Ingrese la URL de foto del album</string>
     <string name="releasedate_album">Ingrese fecha lanzamiento album</string>
     <string name="genre_album">Ingrese el genero musical</string>
@@ -23,12 +30,24 @@
     <string name="cancelar">Cancelar</string>
     <string name="guardar">Guardar</string>
     <string name="title_activity_band_detail">BandDetailActivity</string>
+    <string name="album_creation_success_message">Álbum creado con éxito</string>
+    <string name="album_creation_unsuccessful_message">No se pudo crear el álbum</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="mobile">Télefono</string>
+    <string name="email">Email</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="add_performers_to_favorite_title">Agregar artista</string>
+    <string name="favorite_performers_text_field">Nombre</string>
+    <string name="favorite_performers_error_message">Seleccionar un artista</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="contentDescriptionBandDetail">nombre del artista</string>
+    <string name="contentDescriptionCollectorDetail">Icono Movil</string>
+    <string name="contentDescriptionCollectorEmailDetail">Icono Email</string>
+    <string name="contentDescriptionCollectorStarDetail">Icono Estrella</string>
+    <string name="contentDescriptionRegresar">Regresar al menu anterior</string>
+
 </resources>

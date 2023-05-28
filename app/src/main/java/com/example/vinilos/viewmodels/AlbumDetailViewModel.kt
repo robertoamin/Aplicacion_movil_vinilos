@@ -2,6 +2,7 @@ package com.example.vinilos.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.example.vinilos.database.dao.VinylRoomDatabase
 import com.example.vinilos.models.Album
 import com.example.vinilos.repositories.AlbumRepository
 
@@ -10,7 +11,8 @@ class AlbumDetailViewModel(
     albumId: String
 ) : AndroidViewModel(application) {
 
-    private val albumRepository: AlbumRepository = AlbumRepository(application)
+    private val albumRepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
+
     private val _album = MutableLiveData<Album>()
 
     val album: LiveData<Album>

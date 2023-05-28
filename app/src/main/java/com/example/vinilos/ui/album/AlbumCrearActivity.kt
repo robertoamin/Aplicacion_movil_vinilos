@@ -52,10 +52,10 @@ class AlbumCrearActivity : AppCompatActivity() {
         private fun setupObservers() {
             viewModel.albumCreado.observe(this, { albumCreado ->
                 if (albumCreado) {
-                    Toast.makeText(this, "Álbum creado con éxito", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.album_creation_success_message), Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    Toast.makeText(this, "No se pudo crear el álbum", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.album_creation_unsuccessful_message), Toast.LENGTH_SHORT).show()
                 }
             })
         }

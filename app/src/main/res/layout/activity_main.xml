@@ -18,7 +18,8 @@
             android:background="?attr/colorTertiaryContainer"
             android:layout_width="match_parent"
             app:titleCentered="true"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            android:contentDescription="@string/contentDescriptionRegresar"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

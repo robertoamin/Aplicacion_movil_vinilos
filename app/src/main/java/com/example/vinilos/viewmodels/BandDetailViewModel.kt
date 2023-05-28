@@ -1,11 +1,14 @@
 package com.example.vinilos.viewmodels
 import android.app.Application
 import androidx.lifecycle.*
+import com.example.vinilos.database.dao.VinylRoomDatabase
 import com.example.vinilos.models.Band
 import com.example.vinilos.repositories.BandRepository
 
 class BandDetailViewModel( application: Application,bandId:String): AndroidViewModel(application) {
-    private val bandRepository: BandRepository = BandRepository(application)
+
+    private val bandRepository = BandRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).bandsDao())
+
     private val _band = MutableLiveData<Band>()
 
     val band: LiveData<Band>

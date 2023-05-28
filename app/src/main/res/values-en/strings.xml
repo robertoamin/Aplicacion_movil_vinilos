@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Vinils</string>
+    <string name="title_album">Album</string>
+    <string name="title_home">Home</string>
+    <string name="title_collector">Collectors</string>
+    <string name="title_artists">Artists</string>
+    <string name="artists">Artists</string>
+
+    <string name="title_albums">Albums</string>
+    <string name="hint_albums_name">Album\'s Name</string>
+    <string name="hint_albums_description">Description</string>
+    <string name="hint_albums_release_date">Release date</string>
+    <string name="hint_albums_genre">Genre</string>
+    <string name="hint_albums_cover">Cover</string>
+    <string name="hint_albums_record_label">Record Label</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_crear_album">Create Album</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_question">¿Who are you?</string>
+    <string name="home_user_label">User</string>
+    <string name="home_second_user_label">Collector</string>
+    <string name="descripcion_album">Specify an album description</string>
+    <string name="add_favorte_fab_content_desc">Add favorite</string>
+    <string name="nombre_album">Enter the album\'s name</string>
+    <string name="fab_content_desc">Create an album</string>
+    <string name="cover_album">Enter the album photo URL</string>
+    <string name="releasedate_album">Enter album release date</string>
+    <string name="genre_album">Enter the musical genre</string>
+    <string name="recordlabel_album">Enter the record label to which the album belongs</string>
+    <string name="cancelar">Cancel</string>
+    <string name="guardar">Save</string>
+    <string name="title_activity_band_detail">BandDetailActivity</string>
+    <string name="album_creation_success_message">Album creation succeeded</string>
+    <string name="album_creation_unsuccessful_message">Something went wrong in album creation</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="mobile">Telephone</string>
+    <string name="email">Email</string>
+    <string name="favoritos">Favorites</string>
+
+    <string name="contentDescriptionBandDetail">Artist Name</string>
+    <string name="contentDescriptionCollectorDetail">Mobile Icon</string>
+    <string name="contentDescriptionCollectorEmailDetail">Email Icon</string>
+    <string name="contentDescriptionCollectorStarDetail">Star Icon</string>
+    <string name="contentDescriptionRegresar">Back</string>
+
+    <string name="add_performers_to_favorite_title">Add artists to favorite</string>
+    <string name="favorite_performers_text_field">Name</string>
+    <string name="favorite_performers_error_message">Select an artist</string>
+
+</resources>

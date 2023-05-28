@@ -57,11 +57,6 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
               context.startActivity(intent)
           }
 
-//        holder.viewDataBinding.root.setOnClickListener {
-//            val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].albumId)
-//            // Navigate using that action
-//            holder.viewDataBinding.root.findNavController().navigate(action)
-//        }
     }
 
     override fun getItemCount(): Int {

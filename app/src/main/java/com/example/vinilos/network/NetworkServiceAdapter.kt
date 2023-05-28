@@ -183,6 +183,64 @@ class NetworkServiceAdapter constructor(context: Context) {
             }))
     }
 
+    suspend fun getCollectorDetail(collectorId: String) = suspendCoroutine<Collector> { cont ->
+        requestQueue.add(getRequest(
+            "collectors/$collectorId",
+            Response.Listener<String> { response ->
+                val collectorJson = JSONObject(response)
+                var collectorDetail = Collector(
+                    collectorJson.getInt("id"),
+                    collectorJson.getString("name"),
+                    collectorJson.getString("telephone"),
+                    collectorJson.getString("email")
+                )
+                cont.resume(collectorDetail)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }
+        ))
+    }
+
+    suspend fun getCollectorsFavoritePerformers(collectorId: String) = suspendCoroutine<List<Band>>{ cont ->
+        requestQueue.add(getRequest("collectors/$collectorId/performers",
+            Response.Listener<String>{ response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Band>()
+                var item: JSONObject
+                for (i in 0 until resp.length()) {
+                    item = resp.getJSONObject(i)
+                    list.add(i,
+                        Band(
+                            bandId = item.getInt("id"),
+                            name = item.getString("name"),
+                            description = item.getString("description"),
+                            image = item.getString("image")))
+                }
+                cont.resume(list)
+            },
+            Response.ErrorListener{
+                cont.resumeWithException(it)
+            }))
+    }
+
+
+    fun addFavoriteBandToCollector(bandId: Int, collectorId: String, onComplete: () -> Unit, onError: (error: VolleyError) -> Unit) {
+
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            "${BASE_URL}collectors/${collectorId}/bands/${bandId}",
+            null,
+            {
+                onComplete()
+            },
+            { error ->
+                onError(error)
+            }
+        )
+
+        requestQueue.add(request)
+    }
 
     fun crearAlbum(album: Album, onComplete: () -> Unit, onError: (error: VolleyError) -> Unit) {
         val albumJson = JSONObject().apply {
