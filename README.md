@@ -16,8 +16,9 @@ La funcionalidad principal de la aplicación incluye:
 - Ver el detalle de un Album
 - Ver el detalle de un artista
 - Listado de coleccionistas con nombre y la inicial
+- Detalle de un coleccionista
 - Control de colecciones de música, permitiendo a los coleccionistas marcar los álbumes que poseen.
-- Opción para marcar artistas como favoritos y recibir recomendaciones personalizadas.
+- Se pueden agregar artistas a un coleccionista, para asi seguirlos
 
 ## Requisitos Previos
 
